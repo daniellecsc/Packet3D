@@ -21,7 +21,7 @@ export function Card({
         <div
           className='bg-teal-panel_active flex justify-center items-center flex-col
           lg:w-[370px] lg:h-[550px] md:h-[450px] rounded-2xl p-6 lg:p-8 
-          relative md:w-[250px] overflow-hidden z-20 transition-all duration-200 ease-in-out'
+          relative md:w-[250px] overflow-hidden z-20 '
         >
           <div className='h-[70px] w-[70px] lg:h-[110px] lg:w-[110px] relative hidden md:flex'>
             <Image

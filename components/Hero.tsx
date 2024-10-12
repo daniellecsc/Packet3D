@@ -29,7 +29,7 @@ export default function Hero() {
 
       <div className='relative z-20 w-full flex justify-center'>
         <Link
-          href='/downloads'
+          href='#downloadp'
           className='gradient-button gradient-button-hovered p-4 rounded-2xl text-darkTeal-bgColor font-semibold flex flex-row w-full sm:w-[250px] justify-center items-center gap-2 hover:translate-y-[-5px]'
         >
           <MdDownload className='text-center text-2xl' />

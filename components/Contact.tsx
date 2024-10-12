@@ -1,18 +1,59 @@
+'use client';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState, FormEvent } from 'react';
 import { FaFacebook } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri';
 import { FaSquareXTwitter } from 'react-icons/fa6';
 import { BiLogoGmail } from 'react-icons/bi';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-//FINISH PUTTING THE CONTENTS FIRST BEFORE APPLYING THE RESPONSIVENESS AND ANIMATIONS
+type FormData = {
+  name: string;
+  email: string;
+  feedback: string;
+};
+
+type ContactProps = {
+  onFeedbackSubmitted: () => void; // Callback to refresh the feedback list
+};
 
 export default function Contact() {
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({ mode: 'onSubmit' });
+
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        alert(result.message);
+      } else {
+        alert('Error: ' + result.error);
+      }
+    } catch (error) {
+      alert(error);
+    } finally {
+      reset({ name: '', email: '', feedback: '' });
+    }
+  };
+
   return (
     <section
       id='contact'
       className='relative bg-darkTeal-bgColor h-lvh flex lg:flex-row flex-col gap-5 lg:px-24 py-10 pb-32 lg:py-12 justify-center items-center overflow-hidden'
     >
+      <div className='about-map absolute inset-0 opacity-75 z-0' />
       <div className='contact-map absolute inset-0 opacity-100 z-0' />
 
       <div className='relative lg:w-[60%] w-full z-10 flex justify-start items-start flex-col mt-56 md:mt-56 lg:mt-16 lg:px-0 px-10'>
@@ -27,25 +68,48 @@ export default function Contact() {
 
         <div className='relative flex flex-col justify-center lg:justify-start items-start w-full'>
           <form
-            action=''
-            className='flex flex-col gap-3 mt-11 w-full items-center lg:items-start'
+            onSubmit={handleSubmit(onSubmit)}
+            className='flex flex-col gap-1 mt-11 w-full items-center lg:items-start'
           >
+            <div></div>
             <input
               type='text'
               className='w-[300px] md:w-[370px] h-[50px] text-[16px] border border-teal-inputf_border focus:outline-none focus:border-teal-navbar_active bg-teal-inputf_bg text-white-subheading_details placeholder-white-inactive_titles_desc rounded-md shadow-md p-4'
               placeholder='Name'
+              aria-describedby='name-error'
+              required
+              {...register('name', { required: 'Name is required' })}
             />
+            {errors?.name?.message && (
+              <p className='mt-0 text-sm text-red-500'>{errors.name.message}</p>
+            )}
+
             <input
-              type='text'
+              type='email'
               className='w-[300px] md:w-[370px] h-[50px] text-[16px] border border-teal-inputf_border focus:outline-none focus:border-teal-navbar_active bg-teal-inputf_bg text-white-subheading_details placeholder-white-inactive_titles_desc rounded-md shadow-md p-4'
               placeholder='Email'
+              aria-describedby='email-error'
+              required
+              {...register('email', { required: 'Email is required' })}
             />
+            {errors?.email?.message && (
+              <p className='mt-0 text-sm text-red-500'>
+                {errors.email.message}
+              </p>
+            )}
             <textarea
-              id='message'
-              name='message'
               className='w-[300px] md:w-[370px] h-[130px] text-[16px] border border-teal-inputf_border focus:outline-none focus:border-teal-navbar_active bg-teal-inputf_bg text-white-subheading_details placeholder-white-inactive_titles_desc rounded-md shadow-md p-4'
               placeholder='Message'
-            ></textarea>
+              aria-describedby='feedback-error'
+              required
+              {...register('feedback', { required: 'Message is required' })}
+            />
+            {errors?.feedback?.message && (
+              <p className='mt-0 text-sm text-red-500'>
+                {errors.feedback.message}
+              </p>
+            )}
+
             <button
               type='submit'
               className='gradient-button gradient-button-hovered p-4 rounded-md text-darkTeal-bgColor font-semibold flex flex-row w-[300px] md:w-[370px] h-[50px] justify-center items-center gap-2 mt-3'
@@ -60,14 +124,14 @@ export default function Contact() {
             Find us on:
           </p>
 
-          <div className='flex flex-row gap-3 mt-1 w-[300px] md:w-[370px] lg:w-auto '>
+          <div className='flex flex-row gap-3 mt-1 w-[300px] md:w-[370px] lg:w-auto'>
             <a href='https://www.facebook.com/profile.php?id=61565802862968&mibextid=LQQJ4d'>
               <FaFacebook className='text-teal-icons text-xl transform transition-transform hover:scale-125 hover:text-white-panels' />
             </a>
-            <a href='https://l.messenger.com/l.php?u=https%3A%2F%2Fwww.instagram.com%2Fpacket3d%3Figsh%3DMWN4MmhtMm9kdHFvdQ%253D%253D&h=AT1w91p3n7ILZt1ZYj3BPZgvSZEYOmIDcImY2PbeIHkLMI1pTOu7Mvn__Y-kUEcfyLTR2lTi-F4IHyYz0tpiUHH0gT8pWn0k54qJ8bbLqor62qlZ25IBwG0f4fej0wwksh21FA'>
+            <a href='https://www.instagram.com/packet3d'>
               <RiInstagramFill className='text-teal-icons text-xl transform transition-transform hover:scale-125 hover:text-white-panels' />
             </a>
-            <a href='https://l.messenger.com/l.php?u=https%3A%2F%2Fx.com%2Fpacket3d%3Fs%3D21&h=AT1w91p3n7ILZt1ZYj3BPZgvSZEYOmIDcImY2PbeIHkLMI1pTOu7Mvn__Y-kUEcfyLTR2lTi-F4IHyYz0tpiUHH0gT8pWn0k54qJ8bbLqor62qlZ25IBwG0f4fej0wwksh21FA'>
+            <a href='https://x.com/packet3d'>
               <FaSquareXTwitter className='text-teal-icons text-xl transform transition-transform hover:scale-125 hover:text-white-panels' />
             </a>
             <a className='ml-4 md:ml-20 flex'>
