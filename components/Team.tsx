@@ -40,46 +40,48 @@ export function Picker({
           <div className='w-full h-full flex flex-row items-center justify-start text-white-headline_titles_description'>
             <div className='w-1/2'></div>
             <div className='w-1/2 flex flex-col justify-center items-center text-center mr-12 delay-300'>
-              <p className='font-bold text-[45px] drop-shadow-md text-teal-inputf_bg'>
+              <p className='font-bold text-[40px] 2xl:text-[43px] drop-shadow-md text-teal-inputf_bg'>
                 {nickname}
               </p>
               <p className='text-white-panels'>
-                _______________________________________________
+                ____________________________________________
               </p>
-              <p className='font-medium text-[25px] mt-5 drop-shadow-md'>
+              <p className='font-medium text-[20px] 2xl:text-[22px] mt-5 drop-shadow-md'>
                 {fullName}
               </p>
-              <p className='font-normal text-[16px] italic drop-shadow-md'>
+              <p className='font-normal text-[13px] 2xl:text-[15px] italic drop-shadow-md'>
                 {position}
               </p>
-              <p className='font-normal text-[16px] mt-7 drop-shadow-md'>
+              <p className='font-normal text-[13px] 2xl:text-[15px] mt-7 drop-shadow-md'>
                 {email}
               </p>
-              <p className='font-normal text-[16px] drop-shadow-md'>{number}</p>
+              <p className='font-normal text-[13px] 2xl:text-[15px] drop-shadow-md'>
+                {number}
+              </p>
             </div>
           </div>
         )}
       </div>
       <div
-        className='xl:hidden p-2 py-2 flex items-end w-full h-[150px] sm:h-[200px] md:h-[300px] bg-teal-panel_active rounded-md shadow-md'
+        className='xl:hidden p-2 py-2 flex items-end w-full h-[150px] sm:h-[200px] md:h-[250px] bg-teal-panel_active rounded-md shadow-md hover:none'
         style={{
           backgroundImage: `url(${bgUrl})`,
         }}
       >
-        <div className='p-2 w-full h-[50%] sm:h-[40%] bg-white-panels rounded-md shadow-xl flex flex-col justify-center items-center'>
-          <p className='font-bold text-xs sm:text-sm md:text-xl drop-shadow-md text-teal-inputf_bg'>
+        <div className='p-3 w-full h-[50%] sm:h-[45%] bg-white-panels rounded-md shadow-xl flex flex-col justify-center items-center'>
+          <p className='font-bold text-[10px] sm:text-sm md:text-base lg:text-lg drop-shadow-md text-teal-inputf_bg'>
             {nickname}
           </p>
-          <p className='font-semibold text-[8px] md:text-xs drop-shadow-md text-teal-inputf_bg'>
+          <p className='font-medium text-[7px] sm:text-[9px] md:text-[11px] lg:text-xs drop-shadow-md text-teal-inputf_bg'>
             {fullName}
           </p>
-          <p className='font-semibold text-[8px] md:text-xs drop-shadow-md text-teal-inputf_bg'>
+          <p className='font-medium text-[7px] sm:text-[9px] md:text-[11px] lg:text-xs drop-shadow-md text-teal-inputf_bg'>
             {position}
           </p>
-          <p className='font-semibold text-[8px] md:text-xs drop-shadow-md text-teal-inputf_bg'>
+          <p className='font-medium text-[7px] sm:text-[9px] md:text-[11px] lg:text-xs drop-shadow-md text-teal-inputf_bg'>
             {email}
           </p>
-          <p className='font-semibold text-[8px] md:text-xs drop-shadow-md text-teal-inputf_bg'>
+          <p className='font-medium text-[7px] sm:text-[9px] md:text-[11px] lg:text-xs drop-shadow-md text-teal-inputf_bg'>
             {number}
           </p>
         </div>
@@ -188,7 +190,7 @@ export default function Team() {
             />
           ))}
       </div>
-      <div className='team-container w-full h-full grid-cols-1 grid sm:grid-cols-2 gap-5 xl:hidden'>
+      <div className='team-container w-full h-full grid-cols-1 grid sm:grid-cols-3 gap-5 xl:hidden'>
         {items
           .sort((a, b) => a.order - b.order)
           .map((item) => (
