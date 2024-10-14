@@ -44,21 +44,22 @@ export default function AdminLogIn() {
             placeholder='Email'
             required // Make the field required
           />
-          <input
-            name='password' // Set name attribute for form data
-            type='password'
-            className='w-[300px] md:w-[370px] h-[50px] text-[16px] border border-teal-inputf_border focus:outline-none focus:border-teal-navbar_active bg-teal-inputf_bg text-white-subheading_details placeholder-white-inactive_titles_desc rounded-md shadow-md p-4'
-            placeholder='Password'
-            required // Make the field required
-          />
-          <div className='w-[300px] md:w-[370px] text-sm flex justify-between text-white-panels'>
-            <div className='flex flex-row gap-1'>
-              <input type='checkbox' />
-              <p className='text-sm'>Save password</p>
+          <div className='flex flex-col gap-1'>
+            <input
+              name='password' // Set name attribute for form data
+              type='password'
+              className='w-[300px] md:w-[370px] h-[50px] text-[16px] border border-teal-inputf_border focus:outline-none focus:border-teal-navbar_active bg-teal-inputf_bg text-white-subheading_details placeholder-white-inactive_titles_desc rounded-md shadow-md p-4'
+              placeholder='Password'
+              required // Make the field required
+            />
+            <div className='w-[300px] md:w-[370px]'>
+              {/* Display error message if exists */}
+              {errorMessage && (
+                <p className='text-red-500 text-xs'>{errorMessage}</p>
+              )}
             </div>
-
-            <a href=''>Forgot Password?</a>
           </div>
+
           <button
             type='submit'
             className='gradient-button gradient-button-hovered p-4 rounded-md text-darkTeal-bgColor font-semibold flex flex-row w-[300px] md:w-[370px] h-[50px] justify-center items-center gap-2 mt-3'
@@ -67,9 +68,6 @@ export default function AdminLogIn() {
             {isPending ? 'Logging in...' : 'Login'}
           </button>
         </form>
-
-        {/* Display error message if exists */}
-        {errorMessage && <p className='text-red-500 text-sm'>{errorMessage}</p>}
       </div>
     </section>
   );

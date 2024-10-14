@@ -2,7 +2,7 @@ import { signOut } from '@/auth';
 import Link from 'next/link';
 import { PiSignOutBold } from 'react-icons/pi';
 
-export default function ButtonSignOut() {
+export default async function ButtonSignOut() {
   return (
     <form
       action={async () => {
