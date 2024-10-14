@@ -21,11 +21,11 @@ export default function AdminLogIn() {
   return (
     <section
       id='login'
-      className='relative bg-darkTeal-bgColor h-lvh flex lg:flex-row lg:gap-32 gap-6 lg:px-28 lg:pt-0 pt-28 justify-center items-center overflow-hidden flex-col '
+      className='relative bg-darkTeal-bgColor h-lvh flex lg:flex-row lg:gap-32 gap-6 lg:px-28 lg:pt-0 justify-center items-center overflow-hidden flex-col '
     >
       <div className='hero-map absolute inset-0 opacity-10 z-0' />
 
-      <div className='flex flex-col w-[35%] min-h-[530px] bg-teal-panel_active/15 rounded-xl p-4 shadow-md backdrop-blur-sm items-center justify-center gap-16'>
+      <div className='flex flex-col w-fit min-h-[530px] px-12 bg-teal-panel_active/15 rounded-xl p-4 shadow-md backdrop-blur-sm items-center justify-center gap-16'>
         <div className='flex items-center gap-4 flex-col'>
           <Image src='/Logo2.png' alt='logo2' width={40} height={40} />
           <h1 className='text-5xl text-white-headline_titles_description font-bold'>

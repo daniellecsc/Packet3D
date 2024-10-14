@@ -1,31 +1,28 @@
 'use client';
 import Image from 'next/image';
-import React, { useState, FormEvent } from 'react';
+import React from 'react';
 import { FaFacebook } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri';
 import { FaSquareXTwitter } from 'react-icons/fa6';
 import { BiLogoGmail } from 'react-icons/bi';
-import { SubmitHandler, useForm } from 'react-hook-form';
-
-type FormData = {
-  name: string;
-  email: string;
-  feedback: string;
-};
-
-type ContactProps = {
-  onFeedbackSubmitted: () => void; // Callback to refresh the feedback list
-};
+import { SubmitHandler, useForm, FormProvider } from 'react-hook-form'; // Import FormProvider
+import { zodResolver } from '@hookform/resolvers/zod'; // Import the resolver
+import { contactSchema, ContactFormData } from '@/app/lib/feedbackSchema'; // Import the schema and type
 
 export default function Contact() {
+  const methods = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema), // Use the Zod resolver
+    mode: 'onSubmit',
+  });
+
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({ mode: 'onSubmit' });
+  } = methods;
 
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
+  const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
     try {
       const response = await fetch('/api/submit', {
         method: 'POST',
@@ -67,56 +64,60 @@ export default function Contact() {
         </div>
 
         <div className='relative flex flex-col justify-center lg:justify-start items-start w-full'>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className='flex flex-col gap-1 mt-11 w-full items-center lg:items-start'
-          >
-            <div></div>
-            <input
-              type='text'
-              className='w-[300px] md:w-[370px] h-[50px] text-[16px] border border-teal-inputf_border focus:outline-none focus:border-teal-navbar_active bg-teal-inputf_bg text-white-subheading_details placeholder-white-inactive_titles_desc rounded-md shadow-md p-4'
-              placeholder='Name'
-              aria-describedby='name-error'
-              required
-              {...register('name', { required: 'Name is required' })}
-            />
-            {errors?.name?.message && (
-              <p className='mt-0 text-sm text-red-500'>{errors.name.message}</p>
-            )}
-
-            <input
-              type='email'
-              className='w-[300px] md:w-[370px] h-[50px] text-[16px] border border-teal-inputf_border focus:outline-none focus:border-teal-navbar_active bg-teal-inputf_bg text-white-subheading_details placeholder-white-inactive_titles_desc rounded-md shadow-md p-4'
-              placeholder='Email'
-              aria-describedby='email-error'
-              required
-              {...register('email', { required: 'Email is required' })}
-            />
-            {errors?.email?.message && (
-              <p className='mt-0 text-sm text-red-500'>
-                {errors.email.message}
-              </p>
-            )}
-            <textarea
-              className='w-[300px] md:w-[370px] h-[130px] text-[16px] border border-teal-inputf_border focus:outline-none focus:border-teal-navbar_active bg-teal-inputf_bg text-white-subheading_details placeholder-white-inactive_titles_desc rounded-md shadow-md p-4'
-              placeholder='Message'
-              aria-describedby='feedback-error'
-              required
-              {...register('feedback', { required: 'Message is required' })}
-            />
-            {errors?.feedback?.message && (
-              <p className='mt-0 text-sm text-red-500'>
-                {errors.feedback.message}
-              </p>
-            )}
-
-            <button
-              type='submit'
-              className='gradient-button gradient-button-hovered p-4 rounded-md text-darkTeal-bgColor font-semibold flex flex-row w-[300px] md:w-[370px] h-[50px] justify-center items-center gap-2 mt-3'
+          <FormProvider {...methods}>
+            {' '}
+            {/* Wrap the form with FormProvider */}
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className='flex flex-col gap-1 mt-11 w-full items-center lg:items-start'
+              noValidate
             >
-              Submit
-            </button>
-          </form>
+              <input
+                className='w-[300px] md:w-[370px] h-[50px] text-[16px] border border-teal-inputf_border focus:outline-none focus:border-teal-navbar_active bg-teal-inputf_bg text-white-subheading_details placeholder-white-inactive_titles_desc rounded-md shadow-md p-4'
+                placeholder='Name'
+                aria-describedby='name-error'
+                required
+                {...register('name')}
+              />
+              {errors.name?.message && (
+                <p className='mt-0 text-xs text-red-500'>
+                  {errors.name.message}
+                </p>
+              )}
+
+              <input
+                className='w-[300px] md:w-[370px] h-[50px] text-[16px] border border-teal-inputf_border focus:outline-none focus:border-teal-navbar_active bg-teal-inputf_bg text-white-subheading_details placeholder-white-inactive_titles_desc rounded-md shadow-md p-4'
+                placeholder='Email'
+                aria-describedby='email-error'
+                required
+                {...register('email')}
+              />
+              {errors.email?.message && (
+                <p className='mt-0 text-xs text-red-500'>
+                  {errors.email.message}
+                </p>
+              )}
+              <textarea
+                className='w-[300px] md:w-[370px] h-[130px] text-[16px] border border-teal-inputf_border focus:outline-none focus:border-teal-navbar_active bg-teal-inputf_bg text-white-subheading_details placeholder-white-inactive_titles_desc rounded-md shadow-md p-4'
+                placeholder='Message'
+                aria-describedby='feedback-error'
+                required
+                {...register('feedback')}
+              />
+              {errors.feedback?.message && (
+                <p className='mt-0 text-xs text-red-500'>
+                  {errors.feedback.message}
+                </p>
+              )}
+
+              <button
+                type='submit'
+                className='gradient-button gradient-button-hovered p-4 rounded-md text-darkTeal-bgColor font-semibold flex flex-row w-[300px] md:w-[370px] h-[50px] justify-center items-center gap-2 mt-3'
+              >
+                Submit
+              </button>
+            </form>
+          </FormProvider>
         </div>
 
         <div className='flex flex-col mt-10 w-full justify-start lg:items-start items-center'>
