@@ -41,7 +41,7 @@ export default function DownloadPage() {
       className='relative bg-darkTeal-bgColor padding-container md:h-lvh h-fit flex flex-col gap-16 py-10 pb-32 lg:py-20 justify-center items-center overflow-hidden'
     >
       <div className='hero-map2 absolute inset-0 opacity-75 z-0' />
-      <div className='hero-map absolute inset-0 opacity-10 z-0' />
+      {/* <div className='hero-map absolute inset-0 opacity-10 z-0' /> */}
 
       <div className='relative w-full flex justify-center items-center flex-col gap-3 text-white-headline_titles_description z-10'>
         <h1 className='drop-shadow-lg font-bold text-[39px] sm:text-[47px] lg:text-[57px] xl:text-[78px] leading-[130%] text-center mt-36 lg:mt-16'>

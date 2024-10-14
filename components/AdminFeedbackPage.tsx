@@ -2,7 +2,6 @@ import { QueryResultRow } from '@vercel/postgres';
 import Image from 'next/image';
 import React from 'react';
 import FeedbackList from './feedbackList';
-import { signOut } from '@/auth';
 import ButtonSignOut from './signOut';
 
 export default function AdminFeedbackPage({
