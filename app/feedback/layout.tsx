@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
-
 import Footer from '@/components/Footer';
-import { LiaSignOutAltSolid } from 'react-icons/lia';
+import Link from 'next/link';
+import ButtonSignOut from '@/components/signOut';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Packet3D',
@@ -14,11 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <div>
-      <div className='fixed flex justify-end w-full padding-container z-40 py-4 shadow-md bg-darkTeal-bgColor'>
-        <button className='flex flex-row items-center gap-2'>
-          <LiaSignOutAltSolid className='text-lg text-teal-navbar_active' />
-          <p className='font-semibold text-white-subheading_details'>Log out</p>
-        </button>
+      <div className='fixed flex justify-between w-full z-40 padding-container py-4 shadow-md bg-darkTeal-bgColor'>
+        <Link href='/'>
+          <Image src='/Logo.png' alt='logo' width={110} height={50} />
+        </Link>
+        <ButtonSignOut />
       </div>
       <main className='relative overflow-hidden'>{children}</main>
       <Footer />

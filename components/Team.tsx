@@ -63,7 +63,7 @@ export function Picker({
         )}
       </div>
       <div
-        className='xl:hidden p-2 py-2 flex items-end w-full h-[150px] sm:h-[200px] md:h-[250px] bg-teal-panel_active rounded-md shadow-md hover:none'
+        className='xl:hidden p-2 py-2 flex items-end w-full h-[150px] sm:h-[200px] md:h-[250px] bg-teal-panel_active rounded-md shadow-md'
         style={{
           backgroundImage: `url(${bgUrl})`,
         }}

@@ -111,7 +111,7 @@ export default function About() {
 
       <button
         onClick={prevCard}
-        className='absolute 2xl:left-20 md:left-2 z-30 rounded-lg opacity-70 hover:opacity-100 rotate-180 md:w-[50px] md:h-[50px]'
+        className='absolute 2xl:left-20 md:left-1 z-30 rounded-lg opacity-100 hover:opacity-100 rotate-180 md:w-[50px] md:h-[50px] xl:w-[80px] xl:h-[80px]'
       >
         <Image
           src={'/NextButton.png'}
@@ -123,7 +123,7 @@ export default function About() {
 
       <button
         onClick={nextCard}
-        className='absolute 2xl:right-20 md:right-2  z-30  rounded-lg opacity-70 hover:opacity-100 md:w-[50px] md:h-[50px]'
+        className='absolute 2xl:right-20 md:right-1 z-30 rounded-lg opacity-100 hover:opacity-100 md:w-[50px] md:h-[50px] xl:w-[80px] xl:h-[80px]'
       >
         <Image
           src={'/NextButton.png'}
