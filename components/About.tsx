@@ -41,7 +41,7 @@ export function Card({
         </div>
       ) : (
         <div
-          className='md:bg-teal-panel_inactive flex justify-center items-center flex-col
+          className='border-2 border-teal-navbar_active/15 md:bg-gradient-to-br from-teal-panel_inactive to-darkTeal-bgColor backdrop-blur-sm flex justify-center items-center flex-col
           lg:w-[370px] lg:h-[460px] md:h-[400px] rounded-2xl p-6 lg:p-8
           relative w-full overflow-hidden md:w-[250px] z-10 transition-all duration-300 ease-in-out md:opacity-60 opacity-100 bg-teal-panel_active'
         >

@@ -168,13 +168,12 @@ export default function Team() {
       id='team'
       className='relative bg-darkTeal-bgColor h-fit xl:h-[calc(110lvh)] flex p-10 xl:px-20 flex-col gap-5 xl:gap-16 xl:pb-32 xl:py-20 overflow-hidden'
     >
-      <div className='team-map2 absolute inset-0 opacity-75 z-0' />
-      {/* <div className='team-map3 absolute inset-0 opacity-75 z-0' /> */}
+      <div className='team-map2 absolute inset-0 opacity-40 z-0 ' />
       <div className='relative flex font-bold text-white-headline_titles_description text-[30px] md:text-[40px] xl:text-[70px] justify-center items-center mt-14 xl:mt-10 drop-shadow-md'>
         Meet the Team
       </div>
 
-      <div className='team-container w-full h-full xl:flex items-center flex-row gap-5 hidden'>
+      <div className='team-container w-full h-full xl:flex items-center flex-row gap-5 hidden z-50'>
         {items
           .sort((a, b) => a.order - b.order)
           .map((item) => (
@@ -191,7 +190,7 @@ export default function Team() {
             />
           ))}
       </div>
-      <div className='team-container w-full h-full grid-cols-1 grid sm:grid-cols-3 gap-5 xl:hidden'>
+      <div className='team-container w-full h-full grid-cols-1 grid sm:grid-cols-3 gap-5 xl:hidden z-50'>
         {items
           .sort((a, b) => a.order - b.order)
           .map((item) => (

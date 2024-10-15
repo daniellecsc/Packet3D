@@ -12,7 +12,7 @@ interface cardProps {
 
 function Card({ icon, os, description, href }: cardProps) {
   return (
-    <div className='bg-white-panels/15 backdrop-blur-sm hover:bg-white-panels/25 hover:border hover:border-teal-neongreen hover:shadow-[0px_0px_30px_1px_rgba(45,211,255,0.30)] w-full flex flex-col lg:w-[350px] lg:h-[280px] md:h-[250px] rounded-2xl p-4 lg:p-4 relative md:w-[250px] overflow-hidden z-20 gap-2 md:gap-0 transition-all duration-300 ease-in-out'>
+    <div className='bg-white-panels/15 backdrop-blur-sm hover:bg-white-panels/25 hover:border hover:border-teal-navbar_active hover:shadow-[0px_0px_30px_1px_rgba(45,211,255,0.30)] w-full flex flex-col lg:w-[360px] lg:h-[280px] md:h-[250px] rounded-2xl p-4 lg:p-4 relative md:w-[280px] overflow-hidden z-20 gap-10 md:gap-0 transition-all duration-300 ease-in-out'>
       <div className='w-full'>
         <div className='flex justify-center items-center h-14 w-14 rounded-full bg-teal-panel_inactive shadow-md hover:shadow-2xl'>
           {icon}

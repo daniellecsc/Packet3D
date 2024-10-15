@@ -202,16 +202,6 @@ body {
     bottom: 0; /* Ensures the map is at the bottom of the section */
   }
 
-  .downl-map {
-    @apply absolute w-full h-full bg-contacttop-bg bg-cover bg-bottom bg-opacity-50 z-0;
-    top: 0; /* Ensures the map is at the bottom of the section */
-  }
-
-  .team-map3 {
-    @apply absolute w-full h-full bg-contactbottom-bg bg-cover bg-bottom bg-opacity-50 z-0;
-    bottom: 0; /* Ensures the map is at the bottom of the section */
-  }
-
   .vid-map {
     @apply relative w-full h-full bg-vid-shadow bg-cover bg-bottom bg-opacity-50 z-0;
     bottom: 0; /* Ensures the map is at the bottom of the section */
@@ -226,14 +216,13 @@ body {
     @apply absolute w-full h-full bg-top-side-shadow bg-cover bg-top bg-opacity-50 z-0;
     top: 0; /* Ensures the map is at the bottom of the section */
   }
+  .trailer-map {
+    @apply absolute w-full h-full bg-trailer-bg bg-cover bg-bottom bg-opacity-50 z-0;
+    bottom: 0; /* Ensures the map is at the bottom of the section */
+  }
   .contact-map {
     @apply absolute w-full h-full bg-side-blob bg-cover bg-top bg-opacity-50 z-0;
-    top: 0; /* Ensures the map is at the bottom of the section */
-  }
-
-  .neon-map {
-    @apply absolute w-full h-full bg-neon-bg bg-cover bg-top bg-opacity-50 z-0;
-    top: 0; /* Ensures the map is at the bottom of the section */
+    bottom: 0; /* Ensures the map is at the bottom of the section */
   }
 
   .team-map {

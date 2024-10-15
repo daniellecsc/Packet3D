@@ -48,12 +48,12 @@ export default function Contact() {
   return (
     <section
       id='contact'
-      className='relative bg-darkTeal-bgColor h-lvh flex lg:flex-row flex-col gap-5 lg:px-32 py-10 pb-32 lg:py-12 justify-center items-center overflow-hidden'
+      className='relative bg-darkTeal-bgColor h-lvh flex lg:flex-row flex-col gap-0 lg:px-28 py-10 pb-32 lg:py-12 justify-center items-center overflow-hidden'
     >
       <div className='about-map absolute inset-0 opacity-75 z-0' />
-      <div className='contact-map absolute inset-0 opacity-100 z-0' />
+      {/* <div className='contact-map absolute inset-0 opacity-100 z-0' /> */}
 
-      <div className='relative lg:w-[60%] w-full z-10 flex justify-start items-start flex-col mt-56 md:mt-56 lg:mt-16 lg:px-0 px-10'>
+      <div className='relative lg:w-[90%] w-full z-10 flex justify-start items-start flex-col mt-56 md:mt-56 lg:mt-16 lg:px-0 px-10'>
         <div className='relative flex flex-col w-full justify-start lg:items-start items-center text-center lg:text-start'>
           <h1 className='text-white-headline_titles_description font-bold text-[40px] md:text-[55px] 2xl:text-[70px] leading-[100%] drop-shadow-md'>
             Get in touch with us!
@@ -112,7 +112,7 @@ export default function Contact() {
 
               <button
                 type='submit'
-                className='gradient-button gradient-button-hovered p-4 rounded-md text-darkTeal-bgColor font-semibold flex flex-row w-[300px] md:w-[370px] h-[50px] justify-center items-center gap-2 mt-3'
+                className='gradient-button gradient-button-hovered hover:text-white-headline_titles_description p-4 rounded-md text-darkTeal-bgColor font-semibold flex flex-row w-[300px] md:w-[370px] h-[50px] justify-center items-center gap-2 mt-3'
               >
                 Submit
               </button>
@@ -145,13 +145,21 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className='relative flex flex-row z-10 lg:w-[50%] w-full mt-14 2xl:ml-60'>
+      <div className='relative flex flex-row z-10 lg:w-[50%] w-full mt-14'>
         <Image
           src='/BMO.png'
           alt='bmo'
-          width={550}
-          height={550}
+          width={450}
+          height={450}
           className='hidden lg:flex'
+        />
+        <Image
+          src='/BMO.png' // Same source as original
+          alt='bmo duplicate'
+          width={200} // Half the size of the original (adjust as needed)
+          height={200}
+          className='absolute lg:left-[-170px] lg:bottom-10 hidden xl:flex' // Adjusted position so they don't overlap
+          style={{ transform: 'scaleX(-1)' }} // Flip horizontally
         />
       </div>
     </section>

@@ -23,9 +23,9 @@ export default function AdminLogIn() {
       id='login'
       className='relative bg-darkTeal-bgColor h-lvh flex lg:flex-row lg:gap-32 gap-6 lg:px-28 lg:pt-0 justify-center items-center overflow-hidden flex-col '
     >
-      <div className='hero-map absolute inset-0 opacity-10 z-0' />
+      <div className='hero-map absolute inset-0 opacity-15 z-0' />
 
-      <div className='flex flex-col w-fit min-h-[530px] px-12 bg-teal-panel_active/15 rounded-xl p-4 shadow-md backdrop-blur-sm items-center justify-center gap-16'>
+      <div className='flex flex-col w-fit min-h-[530px] px-12 bg-teal-panel_active/15 rounded-xl p-4 shadow-lg backdrop-blur-sm items-center justify-center gap-16'>
         <div className='flex items-center gap-4 flex-col'>
           <Image src='/Logo2.png' alt='logo2' width={45} height={45} />
           <h1 className='text-5xl text-white-headline_titles_description font-bold'>
@@ -62,7 +62,7 @@ export default function AdminLogIn() {
 
           <button
             type='submit'
-            className='gradient-button gradient-button-hovered p-4 rounded-md text-darkTeal-bgColor font-semibold flex flex-row w-[300px] md:w-[370px] h-[50px] justify-center items-center gap-2 mt-3'
+            className='gradient-button gradient-button-hovered hover:text-white-headline_titles_description p-4 rounded-md text-darkTeal-bgColor font-semibold flex flex-row w-[300px] md:w-[370px] h-[50px] justify-center items-center gap-2 mt-3'
             aria-disabled={isPending} // Disable button when pending
           >
             {isPending ? 'Logging in...' : 'Login'}
