@@ -43,7 +43,7 @@ export function Card({
         <div
           className='md:bg-teal-panel_inactive flex justify-center items-center flex-col
           lg:w-[370px] lg:h-[460px] md:h-[400px] rounded-2xl p-6 lg:p-8
-          relative w-full overflow-hidden md:w-[250px] z-10 transition-all duration-200 ease-in-out md:opacity-60 opacity-100 bg-teal-panel_active'
+          relative w-full overflow-hidden md:w-[250px] z-10 transition-all duration-300 ease-in-out md:opacity-60 opacity-100 bg-teal-panel_active'
         >
           <div className='h-[70px] w-[70px] lg:h-[110px] lg:w-[110px] relative hidden md:flex'>
             <Image
@@ -88,6 +88,7 @@ export default function About() {
       id='about'
       className='relative bg-darkTeal-bgColor h-lvh flex flex-col md:flex-row justify-center items-center gap-2 overflow-hidden pt-16 px-10 md:px-10'
     >
+      <div className='hero-map-reversed absolute inset-0 opacity-75 z-0' />
       <div className='about-map absolute inset-0 opacity-75 z-0' />
 
       <Card

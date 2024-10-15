@@ -48,7 +48,7 @@ export default function Contact() {
   return (
     <section
       id='contact'
-      className='relative bg-darkTeal-bgColor h-lvh flex lg:flex-row flex-col gap-5 lg:px-24 py-10 pb-32 lg:py-12 justify-center items-center overflow-hidden'
+      className='relative bg-darkTeal-bgColor h-lvh flex lg:flex-row flex-col gap-5 lg:px-32 py-10 pb-32 lg:py-12 justify-center items-center overflow-hidden'
     >
       <div className='about-map absolute inset-0 opacity-75 z-0' />
       <div className='contact-map absolute inset-0 opacity-100 z-0' />
@@ -145,12 +145,12 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className='relative flex flex-row z-10 lg:w-[50%] w-full mt-14'>
+      <div className='relative flex flex-row z-10 lg:w-[50%] w-full mt-14 2xl:ml-60'>
         <Image
-          src='/Envelope.png'
-          alt='envelope'
-          width={600}
-          height={600}
+          src='/BMO.png'
+          alt='bmo'
+          width={550}
+          height={550}
           className='hidden lg:flex'
         />
       </div>

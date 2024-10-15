@@ -169,6 +169,7 @@ export default function Team() {
       className='relative bg-darkTeal-bgColor h-fit xl:h-[calc(110lvh)] flex p-10 xl:px-20 flex-col gap-5 xl:gap-16 xl:pb-32 xl:py-20 overflow-hidden'
     >
       <div className='team-map2 absolute inset-0 opacity-75 z-0' />
+      {/* <div className='team-map3 absolute inset-0 opacity-75 z-0' /> */}
       <div className='relative flex font-bold text-white-headline_titles_description text-[30px] md:text-[40px] xl:text-[70px] justify-center items-center mt-14 xl:mt-10 drop-shadow-md'>
         Meet the Team
       </div>

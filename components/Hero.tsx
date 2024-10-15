@@ -14,7 +14,10 @@ export default function Hero() {
       <div className='relative w-full flex justify-center items-center flex-col gap-6 text-white-headline_titles_description z-10'>
         <h1 className='drop-shadow-lg font-bold text-[39px] sm:text-[47px] md:text-[57px] lg:text-[69px] xl:text-[78px] leading-[130%] text-center mt-36 lg:mt-16'>
           Unleash the Power of
-          <br /> Networks In Virtual Reality
+          <br />{' '}
+          <span className='bg-gradient-to-r from-teal-navbar_active to-teal-neongreen bg-clip-text text-transparent'>
+            Networks In Virtual Reality
+          </span>
         </h1>
 
         <p className='font-normal text-[16px] mt-4 text-center text-white-subheading_details'>
@@ -30,7 +33,7 @@ export default function Hero() {
       <div className='relative z-20 w-full flex justify-center'>
         <Link
           href='#downloadp'
-          className='gradient-button gradient-button-hovered p-4 rounded-2xl text-darkTeal-bgColor font-semibold flex flex-row w-full sm:w-[250px] justify-center items-center gap-2 hover:translate-y-[-5px]'
+          className='bg-gradient-to-r from-teal-navbar_active to-teal-neongreen p-4 rounded-2xl text-darkTeal-bgColor font-semibold flex flex-row w-full sm:w-[250px] justify-center items-center gap-2 hover:translate-y-[-5px]'
         >
           <MdDownload className='text-center text-2xl' />
           Download Packet3D

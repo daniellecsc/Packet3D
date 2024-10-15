@@ -25,6 +25,7 @@ module.exports = {
           inputf_bg: '#0A3A42',
           inputf_border: '#1F5A62',
           icons: '#409BB4',
+          neongreen: '#1eedd9',
         },
 
         white: {
@@ -55,6 +56,9 @@ module.exports = {
         'bottom-panel': "url('/BottomPanel.png')",
         'vid-shadow': "url('/BottomShadow.png')",
         'smoke-bg': "url('/Smoke.png')",
+        'contacttop-bg': "url('/contactTop.png')",
+        'contactbottom-bg': "url('/contactBottom.png')",
+        'neon-bg': "url('/neon.png')",
       },
       screens: {
         xs: '400px',
