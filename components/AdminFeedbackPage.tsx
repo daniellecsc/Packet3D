@@ -15,7 +15,6 @@ export default function AdminFeedbackPage({
         feedbacks.length > 2 ? 'h-fit' : 'h-lvh'
       }`}
     >
-      <div className='about-map absolute inset-0 opacity-100 z-50' />
       <div className='relative flex font-bold text-white-headline_titles_description text-[30px] md:text-[40px] lg:text-[60px] justify-center items-center mt-14 xl:mt-10 drop-shadow-md'>
         Feedbacks and Suggestions
       </div>
