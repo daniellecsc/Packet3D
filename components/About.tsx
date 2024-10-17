@@ -88,8 +88,7 @@ export default function About() {
       id='about'
       className='relative bg-darkTeal-bgColor h-lvh flex flex-col md:flex-row justify-center items-center gap-2 overflow-hidden pt-16 px-10 md:px-10'
     >
-      <div className='hero-map-reversed absolute inset-0 opacity-75 z-0' />
-      <div className='about-map absolute inset-0 opacity-75 z-0' />
+      <div className='about-map absolute inset-0 opacity-100 z-0' />
 
       <Card
         isActive={activeIndex === 0}

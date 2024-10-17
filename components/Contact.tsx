@@ -50,15 +50,15 @@ export default function Contact() {
       id='contact'
       className='relative bg-darkTeal-bgColor h-lvh flex lg:flex-row flex-col gap-0 lg:px-28 py-10 pb-32 lg:py-12 justify-center items-center overflow-hidden'
     >
-      <div className='about-map absolute inset-0 opacity-75 z-0' />
+      <div className='about-map absolute inset-0 opacity-100 z-0' />
       {/* <div className='contact-map absolute inset-0 opacity-100 z-0' /> */}
 
       <div className='relative lg:w-[90%] w-full z-10 flex justify-start items-start flex-col mt-56 md:mt-56 lg:mt-16 lg:px-0 px-10'>
         <div className='relative flex flex-col w-full justify-start lg:items-start items-center text-center lg:text-start'>
-          <h1 className='text-white-headline_titles_description font-bold text-[40px] md:text-[55px] 2xl:text-[70px] leading-[100%] drop-shadow-md'>
+          <h1 className='text-white-headline_titles_description font-bold text-[40px] md:text-[55px] 2xl:text-[70px] leading-[100%] drop-shadow-lg'>
             Get in touch with us!
           </h1>
-          <p className='text-white-lightgray_desc font-normal text-[16px]'>
+          <p className='text-white-lightgray_desc font-normal text-[16px] drop-shadow-md'>
             Let us know about your experience!
           </p>
         </div>

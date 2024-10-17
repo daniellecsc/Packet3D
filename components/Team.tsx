@@ -168,12 +168,17 @@ export default function Team() {
       id='team'
       className='relative bg-darkTeal-bgColor h-fit xl:h-[calc(110lvh)] flex p-10 xl:px-20 flex-col gap-5 xl:gap-16 xl:pb-32 xl:py-20 overflow-hidden'
     >
-      <div className='team-map2 absolute inset-0 opacity-40 z-0 ' />
+      <div className='absolute inset-0 z-0 bg-[radial-gradient(rgba(229,231,235,0.05)_1px,transparent_1px)] [background-size:16px_16px]' />
+      <div className='absolute top-0 z-0 h-full w-full'>
+        <div className='absolute right-16 top-40 h-[200px] w-[400px] -translate-x-[30%] translate-y-[20%] -rotate-12 rounded-full bg-teal-navbar_active opacity-80 blur-[80px]' />
+        <div className='absolute bottom-40 left-16 h-[200px] w-[400px] rotate-12 rounded-full bg-teal-neongreen opacity-80 blur-[80px]' />
+      </div>
+      {/* <div className='team-map2 absolute inset-0 opacity-40 z-0 ' /> */}
       <div className='relative flex font-bold text-white-headline_titles_description text-[30px] md:text-[40px] xl:text-[70px] justify-center items-center mt-14 xl:mt-10 drop-shadow-md'>
         Meet the Team
       </div>
 
-      <div className='team-container w-full h-full xl:flex items-center flex-row gap-5 hidden z-50'>
+      <div className='team-container w-full h-full xl:flex items-center flex-row gap-5 hidden z-20'>
         {items
           .sort((a, b) => a.order - b.order)
           .map((item) => (

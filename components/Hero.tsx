@@ -8,7 +8,8 @@ export default function Hero() {
       id='hero'
       className='relative bg-darkTeal-bgColor padding-container h-lvh flex flex-col gap-16 py-10 pb-32 lg:py-20 justify-center items-center overflow-hidden'
     >
-      <div className='hero-map2 absolute inset-0 opacity-75 z-0' />
+      <div className='hero-map2 absolute inset-0 opacity-100 z-0' />
+      {/* <div className='absolute inset-0 z-0 h-full w-full [background:radial-gradient(95%_100%_at_50%_10%,#031C22_40%,#2DD3FF_100%)]'></div> */}
       <div className='hero-map absolute inset-0 opacity-10 z-0' />
 
       <div className='relative w-full flex justify-center items-center flex-col gap-6 text-white-headline_titles_description z-10'>

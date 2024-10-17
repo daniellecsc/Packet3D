@@ -40,15 +40,15 @@ export default function DownloadPage() {
       id='downloadp'
       className='relative bg-darkTeal-bgColor padding-container md:h-lvh h-fit flex flex-col gap-16 py-10 pb-32 lg:py-20 justify-center items-center overflow-hidden'
     >
-      <div className='hero-map2 absolute inset-0 opacity-75 z-0' />
-      {/* <div className='downl-map absolute inset-0 opacity-75 z-0' /> */}
+      <div className='hero-map2 absolute inset-0 opacity-100 z-0' />
+      <div className='absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#1eedd920_1px,transparent_1px),linear-gradient(to_bottom,#1eedd920_1px,transparent_1px)] bg-[size:60px_80px] [mask-image:radial-gradient(ellipse_60%_95%_at_50%_0%,#000_70%,transparent_100%)]' />
 
       <div className='relative w-full flex justify-center items-center flex-col gap-3 z-10'>
         <h1 className='drop-shadow-lg font-bold text-[39px] sm:text-[47px] lg:text-[57px] xl:text-[78px] leading-[130%] text-center mt-36 lg:mt-16 bg-gradient-to-r from-teal-navbar_active to-teal-neongreen bg-clip-text text-transparent'>
           Download Packet3D Now
         </h1>
 
-        <p className='font-normal text-[16px] text-center text-white-subheading_details'>
+        <p className='font-normal text-[16px] text-center text-white-subheading_details drop-shadow-lg'>
           Packet3D is now available in Windows, MacOS, and Meta Quest 2
         </p>
       </div>
