@@ -63,7 +63,7 @@ export function Picker({
         )}
       </div>
       <div
-        className='xl:hidden p-2 py-2 flex items-end w-full h-[150px] sm:h-[200px] md:h-[250px] bg-teal-panel_active rounded-md shadow-md'
+        className='xl:hidden p-2 py-2 flex items-end w-full h-[150px] sm:h-[200px] md:h-[250px] bg-teal-panel_active cursor-pointer rounded-md shadow-md'
         style={{
           backgroundImage: `url(${bgUrl})`,
         }}
@@ -168,7 +168,7 @@ export default function Team() {
       id='team'
       className='relative bg-darkTeal-bgColor h-fit xl:h-[calc(110lvh)] flex p-10 xl:px-20 flex-col gap-5 xl:gap-16 xl:pb-32 xl:py-20 overflow-hidden'
     >
-      <div className='absolute inset-0 z-0 bg-[radial-gradient(rgba(229,231,235,0.05)_1px,transparent_1px)] [background-size:16px_16px]' />
+      <div className='absolute inset-0 z-0 bg-[radial-gradient(rgba(229,231,235,0.08)_1px,transparent_1px)] [background-size:16px_16px]' />
       <div className='absolute top-0 z-0 h-full w-full'>
         <div className='absolute right-16 top-40 h-[200px] w-[400px] -translate-x-[30%] translate-y-[20%] -rotate-12 rounded-full bg-teal-navbar_active opacity-80 blur-[80px]' />
         <div className='absolute bottom-40 left-16 h-[200px] w-[400px] rotate-12 rounded-full bg-teal-neongreen opacity-80 blur-[80px]' />
