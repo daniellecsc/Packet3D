@@ -15,10 +15,6 @@ const FeedbackList: React.FC = () => {
         throw new Error('Failed to fetch feedbacks');
       }
       const data = await response.json();
-
-      // Check if the feedback is being fetched properly after deletion
-      console.log('Fetched feedbacks:', data);
-
       setFeedbacks(data);
     } catch (error) {
       console.error('Error fetching feedbacks:', error);
@@ -27,8 +23,6 @@ const FeedbackList: React.FC = () => {
 
   // Delete feedback function
   const handleDelete = async (id: string) => {
-    console.log('Deleting feedback with id:', id); // Check the ID being passed
-
     try {
       const response = await fetch(`/api/submit?id=${id}`, {
         method: 'DELETE',
@@ -41,13 +35,9 @@ const FeedbackList: React.FC = () => {
       }
 
       // Remove the deleted feedback from the state
-      setFeedbacks((prevFeedbacks) => {
-        const updatedFeedbacks = prevFeedbacks.filter(
-          (feedback) => feedback.id !== id
-        );
-        console.log('Updated feedbacks after delete:', updatedFeedbacks);
-        return updatedFeedbacks;
-      });
+      setFeedbacks((prevFeedbacks) =>
+        prevFeedbacks.filter((feedback) => feedback.id !== id)
+      );
     } catch (error) {
       console.error('Error deleting feedback:', error);
     }
