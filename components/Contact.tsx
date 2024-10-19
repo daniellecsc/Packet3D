@@ -1,17 +1,20 @@
 'use client';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react'; // Import useState for managing dialog visibility
 import { FaFacebook } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri';
 import { FaSquareXTwitter } from 'react-icons/fa6';
 import { BiLogoGmail } from 'react-icons/bi';
-import { SubmitHandler, useForm, FormProvider } from 'react-hook-form'; // Import FormProvider
-import { zodResolver } from '@hookform/resolvers/zod'; // Import the resolver
-import { contactSchema, ContactFormData } from '@/app/lib/feedbackSchema'; // Import the schema and type
+import { FaCircleCheck } from 'react-icons/fa6';
+import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { contactSchema, ContactFormData } from '@/app/lib/feedbackSchema';
 
 export default function Contact() {
+  const [dialogVisible, setDialogVisible] = useState(false); // State for dialog visibility
+  const [dialogMessage, setDialogMessage] = useState(''); // State for dialog message
   const methods = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema), // Use the Zod resolver
+    resolver: zodResolver(contactSchema),
     mode: 'onSubmit',
   });
 
@@ -34,14 +37,26 @@ export default function Contact() {
 
       const result = await response.json();
       if (response.ok) {
-        alert(result.message);
+        setDialogMessage(result.message || 'Your message has been sent!'); // Set the dialog message
       } else {
-        alert('Error: ' + result.error);
+        setDialogMessage('Error: ' + result.error); // Set error message
       }
-    } catch (error) {
-      alert(error);
+    } catch (error: unknown) {
+      console.error('Submission error:', error); // Log full error for debugging
+
+      if (error instanceof Error) {
+        setDialogMessage(error.message); // Display user-friendly message
+      } else {
+        setDialogMessage('An unexpected error occurred'); // Fallback message
+      }
     } finally {
       reset({ name: '', email: '', feedback: '' });
+      setDialogVisible(true); // Show the dialog
+
+      // Hide the dialog after 5 seconds
+      setTimeout(() => {
+        setDialogVisible(false);
+      }, 2000);
     }
   };
 
@@ -51,7 +66,6 @@ export default function Contact() {
       className='relative bg-darkTeal-bgColor h-lvh flex lg:flex-row flex-col gap-0 lg:px-28 py-10 pb-32 lg:py-12 justify-center items-center overflow-hidden'
     >
       <div className='about-map absolute inset-0 opacity-100 z-0' />
-      {/* <div className='contact-map absolute inset-0 opacity-100 z-0' /> */}
 
       <div className='relative lg:w-[90%] w-full z-10 flex justify-start items-start flex-col mt-56 md:mt-56 lg:mt-16 lg:px-0 px-10'>
         <div className='relative flex flex-col w-full justify-start lg:items-start items-center text-center lg:text-start'>
@@ -65,8 +79,6 @@ export default function Contact() {
 
         <div className='relative flex flex-col justify-center lg:justify-start items-start w-full'>
           <FormProvider {...methods}>
-            {' '}
-            {/* Wrap the form with FormProvider */}
             <form
               onSubmit={handleSubmit(onSubmit)}
               className='flex flex-col gap-1 mt-11 w-full items-center lg:items-start'
@@ -120,6 +132,21 @@ export default function Contact() {
           </FormProvider>
         </div>
 
+        {/* Dialog Box */}
+        {dialogVisible && (
+          <div className='fixed inset-0 flex justify-center items-start mt-24 z-50'>
+            <div className='bg-white-panels rounded-sm shadow-lg py-2 px-4 max-w-md mx-auto flex gap-3'>
+              <div className='text-green-600 text-2xl'>
+                <FaCircleCheck />
+              </div>
+
+              <p className='text-center text-black text-base'>
+                {dialogMessage}
+              </p>
+            </div>
+          </div>
+        )}
+
         <div className='flex flex-col mt-10 w-full justify-start lg:items-start items-center'>
           <p className='w-[300px] md:w-[370px] lg:w-auto text-white-subheading_details font-bold text-[16px]'>
             Find us on:
@@ -154,12 +181,12 @@ export default function Contact() {
           className='hidden lg:flex'
         />
         <Image
-          src='/BMO.png' // Same source as original
+          src='/BMO.png'
           alt='bmo duplicate'
-          width={200} // Half the size of the original (adjust as needed)
+          width={200}
           height={200}
-          className='absolute lg:left-[-170px] lg:bottom-10 hidden xl:flex' // Adjusted position so they don't overlap
-          style={{ transform: 'scaleX(-1)' }} // Flip horizontally
+          className='absolute lg:left-[-170px] lg:bottom-10 hidden xl:flex'
+          style={{ transform: 'scaleX(-1)' }}
         />
       </div>
     </section>

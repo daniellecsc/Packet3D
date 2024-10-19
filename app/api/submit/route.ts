@@ -8,10 +8,10 @@ export async function POST(request: Request) {
 
     // Insert the feedback into the database
     await db.connect();
-    await db.sql`INSERT INTO feedbacks (name, email, feedback) VALUES (${name}, ${email}, ${feedback})`;
+    await db.sql`INSERT INTO feedbacks (name, email, feedback, createdat) VALUES (${name}, ${email}, ${feedback}, NOW())`;
 
     return NextResponse.json({
-      message: 'Feedback submitted successfully!',
+      message: 'Your feedback was submitted successfully!',
     });
   } catch (error) {
     return NextResponse.json(
@@ -26,7 +26,8 @@ export async function GET() {
   try {
     // Fetch feedbacks from the database
     await db.connect();
-    const res = await db.sql`SELECT * FROM feedbacks LIMIT 1000000`;
+    const res =
+      await db.sql`SELECT *, createdat AT TIME ZONE 'UTC' AT TIME ZONE 'Asia/Manila' AS createdat FROM feedbacks LIMIT 1000000`;
     const feedbacks = res.rows;
 
     return NextResponse.json(feedbacks);
@@ -37,6 +38,7 @@ export async function GET() {
     );
   }
 }
+``;
 
 // DELETE: Delete a feedback by ID
 export async function DELETE(request: Request) {

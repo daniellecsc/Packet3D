@@ -2,10 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import FeedbackCard from './feedbackCard';
+import FeedbackCard from './feedbackCard'; // Ensure the path is correct
 
 const FeedbackList: React.FC = () => {
   const [feedbacks, setFeedbacks] = useState<any[]>([]);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState<string | null>(null); // Track which ID to delete
   const pathname = usePathname();
 
   const fetchFeedbacks = async () => {
@@ -38,6 +40,7 @@ const FeedbackList: React.FC = () => {
       setFeedbacks((prevFeedbacks) =>
         prevFeedbacks.filter((feedback) => feedback.id !== id)
       );
+      setIsDialogOpen(false); // Close the dialog after deletion
     } catch (error) {
       console.error('Error deleting feedback:', error);
     }
@@ -59,13 +62,52 @@ const FeedbackList: React.FC = () => {
         feedbacks.map((feedback) => (
           <FeedbackCard
             key={feedback.id}
-            id={feedback.id} // Pass id
+            id={feedback.id}
             name={feedback.name}
             email={feedback.email}
             feedback={feedback.feedback}
-            onDelete={handleDelete} // Pass the delete function
+            createdat={new Date(feedback.createdat).toLocaleString('en-PH', {
+              timeZone: 'Asia/Manila',
+              hour12: true,
+            })}
+            onDelete={(id) => {
+              setDeleteId(id); // Set the ID of the feedback to be deleted
+              setIsDialogOpen(true); // Open the dialog
+            }}
           />
         ))
+      )}
+
+      {/* Confirmation Pop-up Dialog */}
+      {isDialogOpen && (
+        <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-30'>
+          <div className='bg-white-panels rounded-lg p-5 shadow-md relative w-96'>
+            <h2 className='text-lg font-semibold text-black'>Are you sure?</h2>
+            <p className='text-sm mt-2 text-white-lightgray_desc'>
+              This action cannot be undone.
+            </p>
+            <div className='flex justify-end mt-5'>
+              <button
+                onClick={() => setIsDialogOpen(false)} // Close the dialog
+                className='mr-2 text-black px-4 py-2 rounded text-base h-8 w-50 flex items-center'
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => deleteId && handleDelete(deleteId)} // Confirm deletion
+                className='bg-red-600 text-white px-4 py-2 rounded text-base h-8 w-50 flex items-center'
+              >
+                Delete
+              </button>
+            </div>
+            <button
+              onClick={() => setIsDialogOpen(false)} // Close the dialog
+              className='absolute top-5 right-5 text-white-lightgray_desc hover:text-gray-800 text-base'
+            >
+              ✖
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
