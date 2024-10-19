@@ -1,10 +1,20 @@
-interface cardProps {
+import { RiDeleteBinLine } from 'react-icons/ri';
+
+interface CardProps {
   name: string;
   email: string;
   feedback: string;
+  id: string;
+  onDelete: (id: string) => void; // New delete function prop
 }
 
-export default function FeedbackCard({ name, email, feedback }: cardProps) {
+export default function FeedbackCard({
+  name,
+  email,
+  feedback,
+  id,
+  onDelete,
+}: CardProps) {
   return (
     <div className='bg-white-panels/15 backdrop-blur-sm hover:bg-white-panels/25 shadow-md w-full flex flex-col lg:w-[100%] h-auto rounded-2xl p-2 relative overflow-hidden z-20 gap-2 md:gap-0 transition-all duration-200 ease-in-out'>
       <div className='w-full rounded-lg p-3'>
@@ -16,6 +26,12 @@ export default function FeedbackCard({ name, email, feedback }: cardProps) {
               {email}
             </p>
           </div>
+          <button
+            onClick={() => onDelete(id)} // Call the delete function
+            className='text-red-500 text-md'
+          >
+            <RiDeleteBinLine />
+          </button>
         </div>
 
         {/*Bottom section: Feedback/Suggestion*/}

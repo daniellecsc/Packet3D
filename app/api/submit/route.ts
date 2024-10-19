@@ -1,7 +1,7 @@
-// app/api/submit/route.ts
 import { NextResponse } from 'next/server';
 import { db } from '@vercel/postgres';
 
+// POST: Submit feedback
 export async function POST(request: Request) {
   try {
     const { name, email, feedback } = await request.json();
@@ -25,6 +25,7 @@ export async function POST(request: Request) {
   }
 }
 
+// GET: Fetch feedbacks
 export async function GET() {
   try {
     // Fetch feedbacks from the database
@@ -37,6 +38,35 @@ export async function GET() {
     console.error('Error fetching feedbacks:', error);
     return NextResponse.json(
       { error: 'Failed to fetch feedbacks' },
+      { status: 500 }
+    );
+  }
+}
+
+// DELETE: Delete a feedback by ID
+export async function DELETE(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id'); // Get the id from the query parameters
+
+    if (!id) {
+      return NextResponse.json(
+        { error: 'Feedback ID is required' },
+        { status: 400 }
+      );
+    }
+
+    // Delete feedback from the database
+    await db.connect();
+    await db.sql`DELETE FROM feedbacks WHERE id = ${id}`;
+
+    return NextResponse.json({
+      message: 'Feedback deleted successfully!',
+    });
+  } catch (error) {
+    console.error('Error deleting feedback:', error);
+    return NextResponse.json(
+      { error: 'Failed to delete feedback' },
       { status: 500 }
     );
   }
