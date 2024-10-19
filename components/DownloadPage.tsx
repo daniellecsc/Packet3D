@@ -49,7 +49,7 @@ export default function DownloadPage() {
         </h1>
 
         <p className='font-normal text-[16px] text-center text-white-subheading_details drop-shadow-lg'>
-          Packet3D is now available in Windows, MacOS, and Meta Quest 2
+          Packet3D is now available in Windows and Meta Quest 2
         </p>
       </div>
 
