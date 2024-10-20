@@ -135,12 +135,12 @@ export default function Contact() {
         {/* Dialog Box */}
         {dialogVisible && (
           <div className='fixed inset-0 flex justify-center items-start mt-24 z-50'>
-            <div className='bg-white-panels rounded-sm shadow-lg py-2 px-4 max-w-md mx-auto flex gap-3'>
-              <div className='text-green-600 text-2xl'>
+            <div className='bg-teal-panel_inactive rounded-lg shadow-lg py-2 px-4 max-w-md mx-auto flex gap-3'>
+              <div className='text-white-headline_titles_description text-xl'>
                 <FaCircleCheck />
               </div>
 
-              <p className='text-center text-black text-base'>
+              <p className='text-center text-white-headline_titles_description text-sm font-medium drop-shadow-md'>
                 {dialogMessage}
               </p>
             </div>

@@ -95,7 +95,7 @@ const FeedbackList: React.FC = () => {
               </button>
               <button
                 onClick={() => deleteId && handleDelete(deleteId)} // Confirm deletion
-                className='bg-red-600 text-white px-4 py-2 rounded text-base h-8 w-50 flex items-center'
+                className='bg-red-700 hover:bg-red-900 text-white px-4 py-2 rounded text-base h-8 w-50 flex items-center'
               >
                 Delete
               </button>

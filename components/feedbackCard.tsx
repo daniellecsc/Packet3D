@@ -49,7 +49,7 @@ export default function FeedbackCard({
           <div className='flex justify-between text-base'>
             <p className='text-white-subheading_details'>{feedback}</p>
           </div>
-          <div className='flex justify-between text-sm text-gray-500'>
+          <div className='absolute bottom-0 right-0 text-xs text-gray-500 p-5'>
             <p>Submitted on: {createdat}</p> {/* Display the submission date */}
           </div>
         </div>
