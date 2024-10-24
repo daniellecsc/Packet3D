@@ -95,7 +95,7 @@ const FeedbackList: React.FC = () => {
       {/* Search and Filters container */}
       <div className='w-full flex flex-col md:flex-row justify-between items-center gap-2'>
         {/* Search bar */}
-        <div className='relative flex items-center w-full :w-auto'>
+        <div className='relative flex items-center w-full sm:w-auto'>
           <IoMdSearch className='absolute left-2 text-white-subheading_details' />
           <input
             type='text'
