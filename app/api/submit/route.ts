@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { db } from '@vercel/postgres';
+import { json } from 'stream/consumers';
 
 // POST: Submit feedback
 export async function POST(request: Request) {
@@ -24,10 +25,10 @@ export async function POST(request: Request) {
 // GET: Fetch feedbacks
 export async function GET() {
   try {
-    // Fetch feedbacks from the database
+    // Fetch feedbacks from the database, casting 'createdat' to 'date' to remove the time part
     await db.connect();
     const res =
-      await db.sql`SELECT *, createdat AT TIME ZONE 'UTC' AT TIME ZONE 'Asia/Manila' AS createdat FROM feedbacks LIMIT 1000000`;
+      await db.sql`SELECT id, name, email, feedback, createdat::date AS createdat FROM feedbacks LIMIT 1000000`;
     const feedbacks = res.rows;
 
     return NextResponse.json(feedbacks);
@@ -38,32 +39,31 @@ export async function GET() {
     );
   }
 }
-``;
 
 // DELETE: Delete a feedback by ID
-export async function DELETE(request: Request) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const id = searchParams.get('id'); // Get the id from the query parameters
+// export async function DELETE(request: Request) {
+//   try {
+//     const { searchParams } = new URL(request.url);
+//     const id = searchParams.get('id'); // Get the id from the query parameters
 
-    if (!id) {
-      return NextResponse.json(
-        { error: 'Feedback ID is required' },
-        { status: 400 }
-      );
-    }
+//     if (!id) {
+//       return NextResponse.json(
+//         { error: 'Feedback ID is required' },
+//         { status: 400 }
+//       );
+//     }
 
-    // Delete feedback from the database
-    await db.connect();
-    await db.sql`DELETE FROM feedbacks WHERE id = ${id}`;
+//     // Delete feedback from the database
+//     await db.connect();
+//     await db.sql`DELETE FROM feedbacks WHERE id = ${id}`;
 
-    return NextResponse.json({
-      message: 'Feedback deleted successfully!',
-    });
-  } catch (error) {
-    return NextResponse.json(
-      { error: 'Failed to delete feedback' },
-      { status: 500 }
-    );
-  }
-}
+//     return NextResponse.json({
+//       message: 'Feedback deleted successfully!',
+//     });
+//   } catch (error) {
+//     return NextResponse.json(
+//       { error: 'Failed to delete feedback' },
+//       { status: 500 }
+//     );
+//   }
+// }

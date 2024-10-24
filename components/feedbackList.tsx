@@ -1,13 +1,20 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import FeedbackCard from './feedbackCard'; // Ensure the path is correct
+import FeedbackCard from './feedbackCard';
+import { BiSortAlt2 } from 'react-icons/bi';
+import { FiFilter } from 'react-icons/fi';
+import { IoMdSearch } from 'react-icons/io';
 
 const FeedbackList: React.FC = () => {
   const [feedbacks, setFeedbacks] = useState<any[]>([]);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [deleteId, setDeleteId] = useState<string | null>(null); // Track which ID to delete
+  const [searchTerm, setSearchTerm] = useState('');
+  const [sortOption, setSortOption] = useState('');
+  const [filterType, setFilterType] = useState('');
+  const [yearFilter, setYearFilter] = useState('');
+  const [monthFilter, setMonthFilter] = useState('');
+  // const [isDialogOpen, setIsDialogOpen] = useState(false);
+  // const [deleteId, setDeleteId] = useState<string | null>(null);
   const pathname = usePathname();
 
   const fetchFeedbacks = async () => {
@@ -23,92 +30,267 @@ const FeedbackList: React.FC = () => {
     }
   };
 
-  // Delete feedback function
-  const handleDelete = async (id: string) => {
-    try {
-      const response = await fetch(`/api/submit?id=${id}`, {
-        method: 'DELETE',
-      });
+  // const handleDelete = async (id: string) => {
+  //   try {
+  //     const response = await fetch(`/api/submit?id=${id}`, {
+  //       method: 'DELETE',
+  //     });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Error deleting feedback:', errorData);
-        throw new Error('Failed to delete feedback');
-      }
+  //     if (!response.ok) {
+  //       const errorData = await response.json();
+  //       console.error('Error deleting feedback:', errorData);
+  //       throw new Error('Failed to delete feedback');
+  //     }
 
-      // Remove the deleted feedback from the state
-      setFeedbacks((prevFeedbacks) =>
-        prevFeedbacks.filter((feedback) => feedback.id !== id)
-      );
-      setIsDialogOpen(false); // Close the dialog after deletion
-    } catch (error) {
-      console.error('Error deleting feedback:', error);
-    }
-  };
+  //     setFeedbacks((prevFeedbacks) =>
+  //       prevFeedbacks.filter((feedback) => feedback.id !== id)
+  //     );
+  //     setIsDialogOpen(false);
+  //   } catch (error) {
+  //     console.error('Error deleting feedback:', error);
+  //   }
+  // };
 
   useEffect(() => {
     fetchFeedbacks();
-
     const intervalId = setInterval(fetchFeedbacks, 5000);
-
     return () => clearInterval(intervalId);
   }, [pathname]);
 
-  return (
-    <div className='w-full flex justify-center items-center text-white-panels text-xl flex-col gap-2'>
-      {feedbacks.length === 0 ? (
-        <p>No feedback available</p>
-      ) : (
-        feedbacks.map((feedback) => (
-          <FeedbackCard
-            key={feedback.id}
-            id={feedback.id}
-            name={feedback.name}
-            email={feedback.email}
-            feedback={feedback.feedback}
-            createdat={new Date(feedback.createdat).toLocaleString('en-PH', {
-              timeZone: 'Asia/Manila',
-              hour12: true,
-            })}
-            onDelete={(id) => {
-              setDeleteId(id); // Set the ID of the feedback to be deleted
-              setIsDialogOpen(true); // Open the dialog
-            }}
-          />
-        ))
-      )}
+  const filteredFeedbacks = feedbacks.filter((feedback) => {
+    const feedbackDate = new Date(feedback.createdat);
+    const isMatchingSearch = feedback.feedback
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const isMatchingYear = yearFilter
+      ? feedbackDate.getFullYear() === parseInt(yearFilter)
+      : true;
+    const isMatchingMonth = monthFilter
+      ? feedbackDate.getMonth() + 1 === parseInt(monthFilter)
+      : true;
 
-      {/* Confirmation Pop-up Dialog */}
-      {isDialogOpen && (
-        <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-30'>
-          <div className='bg-white-panels rounded-lg p-5 shadow-md relative w-96'>
-            <h2 className='text-lg font-semibold text-black'>Are you sure?</h2>
-            <p className='text-sm mt-2 text-white-lightgray_desc'>
-              This action cannot be undone.
-            </p>
-            <div className='flex justify-end mt-5'>
-              <button
-                onClick={() => setIsDialogOpen(false)} // Close the dialog
-                className='mr-2 text-black px-4 py-2 rounded text-base h-8 w-50 flex items-center'
+    return isMatchingSearch && isMatchingYear && isMatchingMonth;
+  });
+
+  const sortFeedbacks = (feedbacks: any[]) => {
+    return feedbacks.sort((a, b) => {
+      const dateA = new Date(a.createdat);
+      const dateB = new Date(b.createdat);
+
+      switch (sortOption) {
+        case 'newest':
+          return dateB.getTime() - dateA.getTime();
+        case 'oldest':
+          return dateA.getTime() - dateB.getTime();
+        default:
+          return 0;
+      }
+    });
+  };
+
+  const sortedFeedbacks = sortFeedbacks(filteredFeedbacks);
+
+  return (
+    <div className='w-full flex justify-center items-center text-white-panels text-xl flex-col gap-8'>
+      {/* Search and Filters container */}
+      <div className='w-full flex flex-col md:flex-row justify-between items-center gap-2'>
+        {/* Search bar */}
+        <div className='relative flex items-center w-full :w-auto'>
+          <IoMdSearch className='absolute left-2 text-white-subheading_details' />
+          <input
+            type='text'
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder='Search feedback'
+            className='w-full sm:w-auto h-[40px] text-[16px] border border-teal-inputf_border focus:outline-none focus:border-teal-navbar_active bg-teal-inputf_bg text-white-subheading_details placeholder-white-lightgray_desc rounded-md shadow-md p-2 pl-9'
+          />
+        </div>
+
+        {/* Filters and Sort container */}
+        <div className='w-full sm:w-auto flex flex-col sm:flex-row gap-2'>
+          {/* Sort by Newest/Oldest */}
+          <div className='relative flex items-center'>
+            <BiSortAlt2 className='absolute left-2 text-white-subheading_details' />
+            <select
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value)}
+              className='w-full sm:w-auto h-[40px] border border-teal-inputf_border text-white bg-teal-inputf_bg rounded-md p-2 pl-9 text-[16px] text-white-subheading_details'
+            >
+              <option
+                value=''
+                className='text-[16px] text-white-subheading_details'
               >
-                Cancel
-              </button>
-              <button
-                onClick={() => deleteId && handleDelete(deleteId)} // Confirm deletion
-                className='bg-red-700 hover:bg-red-900 text-white px-4 py-2 rounded text-base h-8 w-50 flex items-center'
+                Sort
+              </option>
+              <option
+                value='newest'
+                className='text-[16px] text-white-subheading_details'
               >
-                Delete
+                Newest
+              </option>
+              <option
+                value='oldest'
+                className='text-[16px] text-white-subheading_details'
+              >
+                Oldest
+              </option>
+            </select>
+          </div>
+
+          {/* Filter type (Year or Month) */}
+          <div className='relative flex items-center'>
+            <FiFilter className='absolute left-2 text-white-subheading_details' />
+            <select
+              value={filterType}
+              onChange={(e) => {
+                setFilterType(e.target.value);
+                setYearFilter('');
+                setMonthFilter('');
+              }}
+              className='w-full sm:w-auto h-[40px] border border-teal-inputf_border text-white bg-teal-inputf_bg rounded-md p-2 pl-9 text-[16px] text-white-subheading_details'
+            >
+              <option
+                value=''
+                className='text-[16px] text-white-subheading_details'
+              >
+                Filter
+              </option>
+              <option
+                value='year'
+                className='text-[16px] text-white-subheading_details'
+              >
+                Filter by Year
+              </option>
+              <option
+                value='month'
+                className='text-[16px] text-white-subheading_details'
+              >
+                Filter by Month
+              </option>
+            </select>
+          </div>
+
+          {/* Year filter */}
+          {filterType === 'year' && (
+            <div className='relative flex items-center'>
+              <select
+                value={yearFilter}
+                onChange={(e) => setYearFilter(e.target.value)}
+                className='w-full sm:w-auto h-[40px] border border-teal-inputf_border text-white bg-teal-inputf_bg rounded-md p-2 text-[16px] text-white-subheading_details'
+              >
+                <option
+                  value=''
+                  className='text-[16px] text-white-subheading_details'
+                >
+                  All Years
+                </option>
+                {Array.from({ length: 10 }, (_, i) => {
+                  const year = new Date().getFullYear() - i;
+                  return (
+                    <option
+                      key={year}
+                      value={year}
+                      className='text-[16px] text-white-subheading_details'
+                    >
+                      {year}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+          )}
+
+          {/* Month filter */}
+          {filterType === 'month' && (
+            <div className='relative flex items-center'>
+              <select
+                value={monthFilter}
+                onChange={(e) => setMonthFilter(e.target.value)}
+                className='w-full sm:w-auto h-[40px] border border-teal-inputf_border text-white bg-teal-inputf_bg rounded-md p-2 text-[16px] text-white-subheading_details'
+              >
+                <option
+                  value=''
+                  className='text-[16px] text-white-subheading_details'
+                >
+                  All Months
+                </option>
+                {Array.from({ length: 12 }, (_, index) => (
+                  <option
+                    key={index + 1}
+                    value={index + 1}
+                    className='text-[16px] text-white-subheading_details'
+                  >
+                    {new Date(0, index).toLocaleString('default', {
+                      month: 'long',
+                    })}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Feedbacks section */}
+      <div className='w-full space-y-2 h-full flex items-center justify-center flex-col'>
+        {sortedFeedbacks.length === 0 ? (
+          <p className='text-white-lightgray_desc'>No feedback available</p>
+        ) : (
+          sortedFeedbacks.map((feedback) => (
+            <FeedbackCard
+              key={feedback.id}
+              id={feedback.id}
+              name={feedback.name}
+              email={feedback.email}
+              feedback={feedback.feedback}
+              createdat={
+                feedback.createdat
+                  ? new Date(feedback.createdat).toLocaleDateString('en-PH', {
+                      timeZone: 'Asia/Manila',
+                    })
+                  : 'Date not available'
+              }
+              // onDelete={(id) => {
+              //   setDeleteId(id);
+              //   setIsDialogOpen(true);
+              // }}
+            />
+          ))
+        )}
+
+        {/* {isDialogOpen && (
+          <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-30'>
+            <div className='bg-white-panels rounded-lg p-5 shadow-md relative w-96'>
+              <h2 className='text-lg font-semibold text-black'>
+                Are you sure?
+              </h2>
+              <p className='text-sm mt-2 text-white-lightgray_desc'>
+                This action cannot be undone.
+              </p>
+              <div className='flex justify-end mt-5'>
+                <button
+                  onClick={() => setIsDialogOpen(false)}
+                  className='mr-2 text-black px-4 py-2 rounded text-base h-8 w-50 flex items-center'
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => deleteId && handleDelete(deleteId)}
+                  className='bg-red-700 hover:bg-red-900 text-white px-4 py-2 rounded text-base h-8 w-50 flex items-center'
+                >
+                  Delete
+                </button>
+              </div>
+              <button
+                onClick={() => setIsDialogOpen(false)}
+                className='absolute top-5 right-5 text-white-lightgray_desc hover:text-gray-800 text-base'
+              >
+                ✖
               </button>
             </div>
-            <button
-              onClick={() => setIsDialogOpen(false)} // Close the dialog
-              className='absolute top-5 right-5 text-white-lightgray_desc hover:text-gray-800 text-base'
-            >
-              ✖
-            </button>
           </div>
-        </div>
-      )}
+        )} */}
+      </div>
     </div>
   );
 };

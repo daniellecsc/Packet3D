@@ -6,7 +6,7 @@ interface CardProps {
   feedback: string;
   id: string;
   createdat: string;
-  onDelete: (id: string) => void; // New delete function prop
+  // onDelete: (id: string) => void;
 }
 
 export default function FeedbackCard({
@@ -15,8 +15,8 @@ export default function FeedbackCard({
   feedback,
   id,
   createdat,
-  onDelete,
-}: CardProps) {
+}: // onDelete,
+CardProps) {
   return (
     <div className='bg-white-panels/15 backdrop-blur-sm shadow-md w-full flex flex-col lg:w-[100%] h-auto rounded-2xl p-2 relative overflow-hidden z-20 gap-2 md:gap-0 transition-all duration-200 ease-in-out'>
       <div className='w-full rounded-lg p-3'>
@@ -28,7 +28,7 @@ export default function FeedbackCard({
               {email}
             </p>
           </div>
-          <div className='bg-red-700 p-1 px-4 rounded-md hover:bg-red-900'>
+          {/* <div className='bg-red-700 p-1 px-4 rounded-md hover:bg-red-900'>
             <button
               onClick={() => onDelete(id)} // Call onDelete function
               className='flex flex-row gap-2 text-white-panels text-sm transition duration-200 ease-in-out transform items-center'
@@ -36,7 +36,7 @@ export default function FeedbackCard({
               <RiDeleteBinLine />
               <p className='text-sm'>Delete</p>
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* Bottom section: Feedback/Suggestion */}
