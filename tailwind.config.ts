@@ -49,14 +49,9 @@ module.exports = {
       },
 
       backgroundImage: {
-        'network-bg': "url('/NetworkBG.png')",
-        'bottom-side-shadow': "url('/BottomSideShadow.png')",
-        'top-side-shadow': "url('/TopSideShadow.png')",
-        'side-blob': "url('/blob.png')",
-        'bottom-panel': "url('/BottomPanel.png')",
-        'vid-shadow': "url('/BottomShadow.png')",
-        'smoke-bg': "url('/grains.png')",
-        'trailer-bg': "url('/trailer.png')",
+        'network-bg': "url('/NetworkBG.webp')",
+        'bottom-side-shadow': "url('/BottomSideShadow.webp')",
+        'top-side-shadow': "url('/TopSideShadow.webp')",
       },
       screens: {
         xs: '400px',

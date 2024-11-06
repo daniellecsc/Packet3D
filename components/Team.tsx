@@ -100,7 +100,7 @@ export default function Team() {
       position: 'Back-end Developer',
       email: 'zyrillenicholequilit@gmail.com',
       number: '09955637401',
-      bgUrl: '/ZyBG.png',
+      bgUrl: '/ZyBG.webp',
     },
     {
       id: 2,
@@ -110,7 +110,7 @@ export default function Team() {
       position: 'Quality Assurance Tester',
       email: 'thereseegaspar@gmail.com',
       number: '09388336086',
-      bgUrl: '/TereBG.png',
+      bgUrl: '/TereBG.webp',
     },
     {
       id: 3,
@@ -120,7 +120,7 @@ export default function Team() {
       position: 'Front-end Developer',
       email: 'itsivang@gmail.com',
       number: '09330493325',
-      bgUrl: '/IvanBG.png',
+      bgUrl: '/IvanBG.webp',
     },
     {
       id: 4,
@@ -130,7 +130,7 @@ export default function Team() {
       position: 'Front-end Developer | UI/UX Designer',
       email: 'danielleclaudettecastaneda@gmail.com',
       number: '09756690321',
-      bgUrl: '/DanBG.png',
+      bgUrl: '/DanBG.webp',
     },
     {
       id: 5,
@@ -140,7 +140,7 @@ export default function Team() {
       position: 'Project Documentation Leader',
       email: 'hanahmaeespineda@gmail.com',
       number: '09363483144',
-      bgUrl: '/HanahBG.png',
+      bgUrl: '/HanahBG.webp',
     },
   ]);
 

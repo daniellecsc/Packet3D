@@ -18,7 +18,7 @@ export default function Navbar() {
   return (
     <nav className='fixed flex justify-between w-full padding-container z-30 py-4 shadow-md bg-darkTeal-bgColor'>
       <Link href='/'>
-        <Image src='/Logo.png' alt='logo' width={110} height={50} />
+        <Image src='/Logo.webp' alt='logo' width={110} height={50} />
       </Link>
 
       {/* Desktop Menu */}

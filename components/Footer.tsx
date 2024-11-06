@@ -10,7 +10,7 @@ export default function Hero() {
       <div className='relative w-full flex justify-center items-center flex-col'>
         <Link href='/'>
           <Image
-            src='/Logo2.png'
+            src='/Logo2.webp'
             alt='logo2'
             width={40}
             height={40}

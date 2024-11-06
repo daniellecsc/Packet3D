@@ -174,14 +174,14 @@ export default function Contact() {
 
       <div className='relative flex flex-row z-10 lg:w-[50%] w-full mt-14'>
         <Image
-          src='/BMO.png'
+          src='/BMO.webp'
           alt='bmo'
           width={450}
           height={450}
           className='hidden lg:flex'
         />
         <Image
-          src='/BMO.png'
+          src='/BMO.webp'
           alt='bmo duplicate'
           width={200}
           height={200}

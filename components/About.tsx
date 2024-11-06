@@ -92,19 +92,19 @@ export default function About() {
 
       <Card
         isActive={activeIndex === 0}
-        icon='/Mission.png'
+        icon='/Mission.webp'
         title='Our Mission'
         content='Packet3D was developed to provide an innovative and interactive learning experience for every student and professor, providing exceptional hands-on activity in the virtual world, and improving the knowledge regarding computer networking.'
       />
       <Card
         isActive={activeIndex === 1}
-        icon='/MagnifyingGlass.png'
+        icon='/MagnifyingGlass.webp'
         title='What is Packet3D?'
         content='Packet3D offers a virtual reality experience where players delve into the world of networking challenges. They encounter different network topologies and solve networking problems and puzzles that encompass real networking experience as they progress through various levels in an immersive 3D environment.'
       />
       <Card
         isActive={activeIndex === 2}
-        icon='/Vision.png'
+        icon='/Vision.webp'
         title='Our Vision'
         content='Packet3D envisions in becoming a breakthrough application utilizing virtual reality to simulate network connections, resolve troubleshooting, furnish routing protocols, packet optimization, and learn configuration commands.'
       />
@@ -114,7 +114,7 @@ export default function About() {
         className='absolute 2xl:left-20 md:left-1 z-30 rounded-lg opacity-100 hover:opacity-100 rotate-180 md:w-[50px] md:h-[50px] xl:w-[80px] xl:h-[80px]'
       >
         <Image
-          src={'/NextButton.png'}
+          src={'/NextButton.webp'}
           alt='inactive-icon'
           layout='fill'
           objectFit='contain'
@@ -126,7 +126,7 @@ export default function About() {
         className='absolute 2xl:right-20 md:right-1 z-30 rounded-lg opacity-100 hover:opacity-100 md:w-[50px] md:h-[50px] xl:w-[80px] xl:h-[80px]'
       >
         <Image
-          src={'/NextButton.png'}
+          src={'/NextButton.webp'}
           alt='inactive-icon'
           layout='fill'
           objectFit='contain'

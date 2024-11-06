@@ -29,7 +29,7 @@ export default function AdminLogIn() {
       <div className='flex flex-col w-fit min-h-[530px] px-12 bg-teal-panel_active/15 rounded-xl p-4 shadow-lg backdrop-blur-sm items-center justify-center gap-16'>
         <div className='flex items-center gap-4 flex-col'>
           <Link href='/'>
-            <Image src='/Logo2.png' alt='logo2' width={45} height={45} />
+            <Image src='/Logo2.webp' alt='logo2' width={45} height={45} />
           </Link>
           <h1 className='text-5xl text-white-headline_titles_description font-bold'>
             Login
