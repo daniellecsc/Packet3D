@@ -17,7 +17,7 @@ export default function RootLayout({
     <div>
       <div className='fixed flex justify-between w-full z-40 padding-container py-4 shadow-md bg-darkTeal-bgColor'>
         <Link href='/'>
-          <Image src='/Logo.png' alt='logo' width={110} height={50} />
+          <Image src='/Logo.webp' alt='logo' width={110} height={50} />
         </Link>
         <ButtonSignOut />
       </div>
