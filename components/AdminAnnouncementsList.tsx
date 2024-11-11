@@ -12,7 +12,7 @@ import { useSession } from 'next-auth/react'; // Import useSession hook
 import { Announcement } from '@/app/lib/definitions';
 import { AdminAnnouncementCard } from './AnnouncementCard';
 import { BiSolidEditAlt } from 'react-icons/bi';
-import { RiDeleteBinLine } from 'react-icons/ri';
+import { RiDeleteBinLine, RiEdit2Line } from 'react-icons/ri';
 import { MdClose } from 'react-icons/md';
 
 export default function Announcements() {
@@ -211,7 +211,7 @@ export default function Announcements() {
                   className='p-1 hover:bg-gray-700 rounded-md'
                   onClick={() => setEdit(true)}
                 >
-                  <BiSolidEditAlt
+                  <RiEdit2Line
                     className='
                 text-xl text-teal-navbar_active '
                   />

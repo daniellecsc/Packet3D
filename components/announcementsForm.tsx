@@ -9,6 +9,8 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FaCircleCheck } from 'react-icons/fa6';
 import { useSession } from 'next-auth/react'; // Import useSession hook
+import { RiEdit2Line } from 'react-icons/ri';
+import { LuText } from 'react-icons/lu';
 
 export default function AnnouncementsForm() {
   const { data: session, status } = useSession(); // Using the useSession hook
@@ -78,7 +80,7 @@ export default function AnnouncementsForm() {
       id='announceForm'
       className='relative bg-darkTeal-bgColor w-full flex flex-col gap-0 justify-center items-center overflow-hidden'
     >
-      <div className='relative lg:w-[90%] w-full flex justify-start items-start flex-col lg:px-0 px-10'>
+      <div className='relative lg:w-[95%] w-full flex justify-start items-start flex-col lg:px-0 px-10'>
         <div className='relative flex flex-col justify-center items-start w-full'>
           <FormProvider {...methods}>
             <form
@@ -86,29 +88,39 @@ export default function AnnouncementsForm() {
               className='flex flex-col gap-2 w-full items-center'
               noValidate
             >
-              <input
-                className='h-[50px] text-[16px] border border-teal-inputf_border focus:outline-none focus:border-teal-navbar_active bg-teal-inputf_bg text-white-subheading_details placeholder-white-inactive_titles_desc rounded-md w-full shadow-md p-4'
-                placeholder='Announcement title'
-                required
-                {...register('title')}
-              />
-              {errors.title?.message && (
-                <p className='mt-0 text-xs text-red-500'>
-                  {errors.title.message}
-                </p>
-              )}
+              <div className='w-full flex flex-row justify-between items-start gap-6'>
+                <RiEdit2Line className='text-xl text-white-panels mt-4' />
+                <div className='flex-grow'>
+                  <input
+                    className='h-[50px] text-[16px] border border-teal-inputf_border focus:outline-none focus:border-teal-navbar_active bg-teal-inputf_bg text-white-subheading_details placeholder-white-inactive_titles_desc rounded-md w-full shadow-md p-4'
+                    placeholder='Announcement title'
+                    required
+                    {...register('title')}
+                  />
+                  {errors.title?.message && (
+                    <p className='mt-0 text-xs text-red-500'>
+                      {errors.title.message}
+                    </p>
+                  )}
+                </div>
+              </div>
 
-              <textarea
-                className='h-[500px] w-full text-[16px] border border-teal-inputf_border focus:outline-none focus:border-teal-navbar_active bg-teal-inputf_bg text-white-subheading_details placeholder-white-inactive_titles_desc rounded-md shadow-md p-4'
-                placeholder='Add description'
-                required
-                {...register('content')}
-              />
-              {errors.content?.message && (
-                <p className='mt-0 text-xs text-red-500'>
-                  {errors.content.message}
-                </p>
-              )}
+              <div className='w-full flex flex-row justify-between items-start gap-6'>
+                <LuText className='text-xl text-white-panels mt-5' />
+                <div className='flex-grow'>
+                  <textarea
+                    className='h-[500px] w-full text-[16px] border border-teal-inputf_border focus:outline-none focus:border-teal-navbar_active bg-teal-inputf_bg text-white-subheading_details placeholder-white-inactive_titles_desc rounded-md shadow-md p-4'
+                    placeholder='Add description'
+                    required
+                    {...register('content')}
+                  />
+                  {errors.content?.message && (
+                    <p className='mt-0 text-xs text-red-500'>
+                      {errors.content.message}
+                    </p>
+                  )}
+                </div>
+              </div>
 
               <div className='flex w-full justify-end'>
                 <button
