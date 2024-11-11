@@ -304,7 +304,7 @@ export default function Announcements() {
                         Are you sure?
                       </h2>
                       <p className='text-sm mt-2 text-white-lightgray_desc'>
-                        This action cannot be undone.
+                        Do you want to save the changes you made?
                       </p>
                       <div className='flex justify-end mt-5'>
                         <button
@@ -315,7 +315,7 @@ export default function Announcements() {
                         </button>
                         <button
                           type='submit'
-                          className='bg-red-700 hover:bg-red-900 text-white-headline_titles_description px-4 py-2 rounded text-base h-8 w-50 flex items-center'
+                          className='bg-teal-navbar_active hover:bg-teal-panel_inactive text-black px-4 py-2 rounded text-base h-8 w-50 flex items-center'
                         >
                           Confirm
                         </button>
