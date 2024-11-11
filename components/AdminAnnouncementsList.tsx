@@ -315,7 +315,7 @@ export default function Announcements() {
                         </button>
                         <button
                           type='submit'
-                          className='bg-teal-navbar_active hover:bg-teal-panel_inactive text-black px-4 py-2 rounded text-base h-8 w-50 flex items-center'
+                          className='bg-teal-panel_inactive hover:bg-teal-inputf_bg shadow-md text-white-headline_titles_description px-4 py-2 rounded text-base h-8 w-50 flex items-center'
                         >
                           Confirm
                         </button>
