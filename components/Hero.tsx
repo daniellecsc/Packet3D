@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React from 'react';
 import Link from 'next/link';
 import { MdDownload } from 'react-icons/md';
 
