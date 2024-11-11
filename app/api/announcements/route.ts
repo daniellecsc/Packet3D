@@ -27,8 +27,7 @@ export async function POST(request: Request) {
   }
 }
 
-// GET: Fetch all announcements
-// GET: Fetch all announcements or a specific announcement by ID
+// GET: Fetch all announcem// GET: Fetch all announcements or a specific announcement by ID
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -39,7 +38,8 @@ export async function GET(request: Request) {
       const res = await db.sql`
         SELECT id, title, content, user_id, created_at::date AS created_at, updated_at::date AS updated_at
         FROM announcements
-        WHERE id = ${announcementId}`;
+        WHERE id = ${announcementId}
+        ORDER BY created_at DESC`; // Ensures sorting by created_at
 
       if (res.rows.length === 0) {
         return NextResponse.json(
@@ -50,7 +50,7 @@ export async function GET(request: Request) {
 
       return NextResponse.json(res.rows[0]);
     } else {
-      // Fetch all announcements if no ID is provided
+      // Fetch all announcements and always sort them by created_at DESC
       const res = await db.sql`
         SELECT id, title, content, user_id, created_at::date AS created_at, updated_at::date AS updated_at
         FROM announcements

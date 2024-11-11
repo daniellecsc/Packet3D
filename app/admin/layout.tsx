@@ -13,12 +13,17 @@ export default function RootLayout({
 }>) {
   const tabs = [
     {
-      link: '/feedback/feedbacks',
+      link: '/admin/feedbacks',
       label: 'Feedbacks',
+      routes: ['/admin/feedbacks'],
     },
     {
-      link: '/feedback/announcements/edit',
+      link: '/admin/announcements/edit',
       label: 'Announcement',
+      routes: [
+        '/admin/announcements/createAnnouncement',
+        '/admin/announcements/edit',
+      ],
     },
   ];
 
@@ -32,7 +37,7 @@ export default function RootLayout({
             <Link href='/'>
               <Image src='/Logo.webp' alt='logo' width={110} height={50} />
             </Link>
-            <ButtonSignOut />
+            <ButtonSignOut className='hover:text-white-headline_titles_description' />
           </div>
         </div>
         {/* Content Wrapper */}

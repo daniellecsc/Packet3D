@@ -109,7 +109,7 @@ const FeedbackList: React.FC = () => {
         {/* Filters and Sort container */}
         <div className='w-full sm:w-auto flex flex-col sm:flex-row gap-2'>
           {/* Sort by Newest/Oldest */}
-          <div className='relative flex items-center'>
+          <div className='relative flex items-center cursor-pointer'>
             <BiSortAlt2 className='absolute left-2 text-white-subheading_details' />
             <select
               value={sortOption}

@@ -7,8 +7,8 @@ export default function Team() {
       id='trailer'
       className='relative bg-darkTeal-bgColor h-lvh flex lg:flex-row lg:gap-14 gap-6 px-10 lg:px-0 lg:pt-0 pt-28 justify-center items-center overflow-hidden flex-col'
     >
-      <div className='lg:w-[30%] w-full z-10 px-10  xl:px-0'>
-        <div className='text-[26px] md:text-[31px] lg:text-[40px] xl:text-[55px] font-bold text-teal-neongreen mb-7 drop-shadow-sm'>
+      <div className='lg:w-[30%] w-full z-10 px-10 xl:px-0'>
+        <div className='text-[26px] md:text-[31px] lg:text-[40px] xl:text-[70px] font-bold text-teal-neongreen mb-7 drop-shadow-sm'>
           <h1>ENTER THE NETWORK</h1>
         </div>
         <div className='lg:text-[16px] font-normal text-justify text-white-headline_titles_description'>

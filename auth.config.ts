@@ -8,7 +8,7 @@ export const authConfig = {
     async authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isHomePage = nextUrl.pathname === '/';
-      const isOnDashboard = nextUrl.pathname.startsWith('/feedback');
+      const isOnDashboard = nextUrl.pathname.startsWith('/admin');
 
       // Allow access to the home page without authentication
       if (isHomePage) return true;
@@ -19,11 +19,10 @@ export const authConfig = {
         return false;
       } else if (isLoggedIn) {
         // Redirect authenticated users to the dashboard
-        return Response.redirect(new URL('/feedback/feedbacks', nextUrl));
+        return Response.redirect(new URL('/admin/feedbacks', nextUrl));
       }
       return true;
     },
-
     // Handle the session callback to attach the user info to the session
     async jwt({ token, user }) {
       // If the user is defined (i.e., it's the first login), you can add data to the JWT token

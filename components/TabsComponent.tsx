@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 interface Tab {
   link: string;
   label: string;
+  routes: string[]; // Array of routes that should activate this tab
 }
 
 export default function Tabs({
@@ -26,8 +27,8 @@ export default function Tabs({
       } p-2 bg-transparent`}
     >
       {tabs.map((tab) => {
-        // Check if the current tab is active by comparing the pathname to the tab's link
-        const isActive = pathname === tab.link;
+        // Check if the current tab is active by checking if the pathname matches any route in the tab's routes array
+        const isActive = tab.routes.includes(pathname);
 
         return (
           <Link

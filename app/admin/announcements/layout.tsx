@@ -9,12 +9,14 @@ export default async function Page({
 }) {
   const tabs = [
     {
-      link: '/feedback/announcements/edit',
+      link: '/admin/announcements/edit',
       label: 'All Announcements',
+      routes: ['/admin/announcements/edit'],
     },
     {
-      link: '/feedback/announcements/createAnnouncement',
+      link: '/admin/announcements/createAnnouncement',
       label: 'Create Announcement',
+      routes: ['/admin/announcements/createAnnouncement'],
     },
   ];
 
