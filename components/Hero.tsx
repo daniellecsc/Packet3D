@@ -1,4 +1,3 @@
-'use client';
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -6,13 +5,6 @@ import Link from 'next/link';
 import { MdDownload } from 'react-icons/md';
 
 export default function Hero() {
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-    });
-    AOS.refresh();
-  }, []);
-
   return (
     <section
       id='hero'
@@ -41,10 +33,7 @@ export default function Hero() {
         </p>
       </div>
 
-      <div
-        className='relative z-20 w-full flex justify-center'
-        data-aos='fade-up'
-      >
+      <div className='relative z-20 w-full flex justify-center'>
         <Link
           href='#downloadp'
           className='bg-gradient-to-r from-teal-navbar_active to-teal-neongreen p-4 rounded-2xl text-darkTeal-bgColor font-semibold flex flex-row w-full sm:w-[250px] justify-center items-center gap-2 hover:translate-y-[-5px]'
