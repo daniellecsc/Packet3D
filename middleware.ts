@@ -1,9 +1,7 @@
-import NextAuth from 'next-auth';
-import { authConfig } from './auth.config';
+import { auth } from '@/auth'; // Import auth from your auth.ts (or wherever NextAuth is configured)
 
-export default NextAuth(authConfig).auth;
+export { auth as middleware } from '@/auth'; // This ensures the auth handler is used in the middleware
 
 export const config = {
-  // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
   matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
 };

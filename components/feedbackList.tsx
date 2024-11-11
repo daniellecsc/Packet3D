@@ -153,7 +153,7 @@ const FeedbackList: React.FC = () => {
                 value=''
                 className='text-[16px] text-white-subheading_details'
               >
-                Filter
+                Filter by date
               </option>
               <option
                 value='year'

@@ -4,7 +4,7 @@ import React from 'react';
 
 //FINISH PUTTING THE CONTENTS FIRST BEFORE APPLYING THE RESPONSIVENESS AND ANIMATIONS
 
-export default function Hero() {
+export default function Footer() {
   return (
     <section className='relative bg-darkTeal-bgColor padding-container h-[200px] flex flex-col gap-20 py-10 pb-32 md:gap-13 lg:py-20 justify-center items-center overflow-hidden'>
       <div className='relative w-full flex justify-center items-center flex-col'>

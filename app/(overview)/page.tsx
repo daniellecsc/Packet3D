@@ -1,5 +1,5 @@
 import About from '@/components/About';
-import AdminLogIn from '@/components/AdminLogIn';
+import AnnouncementsPage from '@/components/AnnouncementsPage';
 import Contact from '@/components/Contact';
 import DownloadPage from '@/components/DownloadPage';
 import Hero from '@/components/Hero';
@@ -12,6 +12,7 @@ export default function Page() {
       <Hero />
       <About />
       <Trailer />
+      <AnnouncementsPage />
       <DownloadPage />
       <Contact />
       <Team />

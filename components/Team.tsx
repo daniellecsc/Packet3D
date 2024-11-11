@@ -14,7 +14,7 @@ type Card = {
   bgUrl: string;
 };
 
-export function Picker({
+export function MemberCard({
   id,
   order,
   fullName,
@@ -182,7 +182,7 @@ export default function Team() {
         {items
           .sort((a, b) => a.order - b.order)
           .map((item) => (
-            <Picker
+            <MemberCard
               key={item.id}
               id={item.id}
               order={item.order}
@@ -199,7 +199,7 @@ export default function Team() {
         {items
           .sort((a, b) => a.order - b.order)
           .map((item) => (
-            <Picker
+            <MemberCard
               key={item.id}
               id={item.id}
               order={item.order}

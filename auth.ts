@@ -3,28 +3,29 @@ import Credentials from 'next-auth/providers/credentials';
 import { authConfig } from './auth.config';
 import { z } from 'zod';
 import { db } from '@vercel/postgres';
-import type { User } from '@/app/lib/definitions';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
+// Fetch the user from the database by email
 async function getUser(email: string): Promise<any | undefined> {
   try {
     const user = await db.sql`SELECT * FROM users WHERE email=${email}`;
     return user.rows[0];
   } catch (error) {
     console.error('Failed to fetch user:', error);
-    throw new Error('Failed to fetch user.');
+    return null; // Return null if there is an error fetching the user
   }
 }
 
-export const { auth, signIn, signOut } = NextAuth({
+export const { auth, signIn, signOut, handlers } = NextAuth({
   ...authConfig,
   providers: [
     Credentials({
       async authorize(credentials) {
+        // Validate input using Zod
         const parsedCredentials = z
           .object({ email: z.string().email(), password: z.string().min(6) })
           .safeParse(credentials);
-        console.log('parsedCredentials');
+
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data;
           const user = await getUser(email);
@@ -37,7 +38,7 @@ export const { auth, signIn, signOut } = NextAuth({
         }
 
         console.log('Invalid credentials');
-        return null;
+        return null; // Return null if credentials are invalid
       },
     }),
   ],
