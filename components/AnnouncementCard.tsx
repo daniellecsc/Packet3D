@@ -46,21 +46,32 @@ export function AdminAnnouncementCard({
   createdAt = 'createdAt',
   announcementId,
   onClick,
+  isActive,
 }: {
   title: string;
   createdAt: string;
   announcementId: string;
   onClick: () => void;
+  isActive: boolean;
 }) {
   return (
     <div
-      onClick={onClick}
-      className='bg-white-panels/15 backdrop-blur-sm shadow-md  w-full rounded-md p-4 relative cursor-pointer hover:opacity-80'
+      className={`shadow-md  w-full rounded-md p-4 relative ${
+        isActive ? 'bg-teal-inputf_bg' : 'bg-white-panels/15 backdrop-blur-sm'
+      }`}
     >
       <p className='text-teal-navbar_active text-xl font-bold'>{title}</p>
-      <p className='text-white-inactive_titles_desc font-normal text-sm italic mt-4'>
+      <p className='text-white-inactive_titles_desc font-normal text-sm'>
         Posted at: {createdAt}
       </p>
+      <div className='flex justify-end'>
+        <button
+          className='text-teal-navbar_active text-sm font-normal hover:text-white-panels'
+          onClick={onClick}
+        >
+          See details {'→'}
+        </button>
+      </div>
     </div>
   );
 }

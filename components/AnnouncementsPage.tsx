@@ -57,7 +57,16 @@ export default function AnnouncementsPage() {
                 key={index}
                 title={announcement.title}
                 id={announcement.id}
-                date={announcement.created_at}
+                date={
+                  announcement.created_at
+                    ? new Date(announcement.created_at).toLocaleDateString(
+                        'en-PH',
+                        {
+                          timeZone: 'Asia/Manila',
+                        }
+                      )
+                    : 'Date not available'
+                }
               />
             );
           })}

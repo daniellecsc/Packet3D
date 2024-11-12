@@ -15,7 +15,7 @@ import { BiSolidEditAlt } from 'react-icons/bi';
 import { RiDeleteBinLine, RiEdit2Line } from 'react-icons/ri';
 import { MdClose } from 'react-icons/md';
 
-export default function Announcements() {
+export default function AdminAnnouncementsList() {
   const [dialogVisible, setDialogVisible] = useState(false);
   const [dialogMessage, setDialogMessage] = useState('');
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
@@ -193,11 +193,21 @@ export default function Announcements() {
                   <AdminAnnouncementCard
                     key={index}
                     title={announcement.title}
-                    createdAt={announcement.created_at}
+                    createdAt={
+                      announcement.created_at
+                        ? new Date(announcement.created_at).toLocaleDateString(
+                            'en-PH',
+                            {
+                              timeZone: 'Asia/Manila',
+                            }
+                          )
+                        : 'Date not available'
+                    }
                     announcementId={announcement.id}
                     onClick={() => {
                       handleFetchAnnouncement(announcement.id);
                     }}
+                    isActive={selectedPost?.id === announcement.id}
                   />
                 );
               })}
