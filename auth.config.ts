@@ -8,10 +8,11 @@ export const authConfig = {
     async authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isHomePage = nextUrl.pathname === '/';
+      const isOnAnnouncements = nextUrl.pathname.startsWith('/announcements');
       const isOnDashboard = nextUrl.pathname.startsWith('/admin');
 
       // Allow access to the home page without authentication
-      if (isHomePage) return true;
+      if (isHomePage || isOnAnnouncements) return true;
 
       if (isOnDashboard) {
         // Redirect unauthenticated users to the login page

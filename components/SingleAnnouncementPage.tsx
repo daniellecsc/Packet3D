@@ -35,9 +35,16 @@ export default function SingleAnnouncementPage({ id }: { id: string }) {
   return (
     <section className='w-full space-y-10 py-10 px-20 bg-darkTeal-bgColor min-h-screen'>
       {loading ? (
-        <div className='flex flex-row items-center text-white-subheading_details'>
-          loading...
-        </div>
+        <>
+          <div className='flex gap-1 flex-col text-white-headline_titles_description w-full'>
+            <div className='h-10 bg-teal-inputf_border rounded w-3/4 mb-2'></div>
+            <div className='h-2 bg-teal-inputf_border rounded w-[200px] mb-2'></div>
+            <div className='flex w-full border-b-[1px] border-teal-inputf_border'></div>
+          </div>
+          <div className='flex gap-1 text-white-headline_titles_description w-full'>
+            <div className='h-6 bg-teal-inputf_border rounded w-3/4 mb-2'></div>
+          </div>
+        </>
       ) : (
         <>
           <div className='flex gap-1 flex-col text-white-headline_titles_description w-full'>
@@ -53,6 +60,7 @@ export default function SingleAnnouncementPage({ id }: { id: string }) {
                   )
                 : 'Date not available'}
             </p>
+            <div className='flex w-full border-b-[1px] border-teal-inputf_border'></div>
           </div>
           <div className='flex gap-1 text-white-headline_titles_description w-full'>
             <p className='text-xs md:text-sm lg:text-lg'>
