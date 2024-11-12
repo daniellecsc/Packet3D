@@ -42,8 +42,16 @@ export default function SingleAnnouncementPage({ id }: { id: string }) {
         <>
           <div className='flex gap-1 flex-col text-white-headline_titles_description w-full'>
             <h1 className='text-4xl font-bold'>{announcement?.title}</h1>
-            <p className='text-sm text-white-headline_titles_description opacity-50'>
-              Posted At: {announcement?.created_at}
+            <p className='text-xs text-gray-500 opacity-50 font-normal'>
+              Posted At:{' '}
+              {announcement?.created_at
+                ? new Date(announcement.created_at).toLocaleDateString(
+                    'en-PH',
+                    {
+                      timeZone: 'Asia/Manila',
+                    }
+                  )
+                : 'Date not available'}
             </p>
           </div>
           <div className='flex gap-1 text-white-headline_titles_description w-full'>
