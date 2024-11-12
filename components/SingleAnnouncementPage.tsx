@@ -60,7 +60,7 @@ export default function SingleAnnouncementPage({ id }: { id: string }) {
                   )
                 : 'Date not available'}
             </p>
-            <div className='flex w-full border-b-[1px] border-teal-inputf_border'></div>
+            <div className='flex w-full border-b-[1px] border-teal-inputf_border mt-2'></div>
           </div>
           <div className='flex gap-1 text-white-headline_titles_description w-full'>
             <p className='text-xs md:text-sm lg:text-lg'>
