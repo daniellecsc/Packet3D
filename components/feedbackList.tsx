@@ -57,9 +57,7 @@ const FeedbackList: React.FC = () => {
 
   useEffect(() => {
     fetchFeedbacks();
-    const intervalId = setInterval(fetchFeedbacks, 5000);
-    return () => clearInterval(intervalId);
-  }, [pathname]);
+  }, []);
 
   const filteredFeedbacks = feedbacks.filter((feedback) => {
     const feedbackDate = new Date(feedback.createdat);
