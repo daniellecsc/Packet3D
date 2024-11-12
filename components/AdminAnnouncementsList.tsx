@@ -147,9 +147,9 @@ export default function Announcements() {
   };
 
   return (
-    <section
+    <div
       id='announceForm'
-      className='relative bg-darkTeal-bgColor w-full flex flex-col gap-0 justify-center items-center overflow-hidden px-10 h-full'
+      className='relative bg-darkTeal-bgColor w-full flex flex-col gap-0 justify-center items-center px-10 '
     >
       <div className='flex justify-start w-full'>
         <h1 className='font-bold text-white-headline_titles_description text-xl'>
@@ -157,14 +157,19 @@ export default function Announcements() {
         </h1>
       </div>
 
-      <div className='relative  w-full flex justify-start items-start flex-row gap-10 mt-6 h-full'>
+      <div className='relative  w-full flex justify-start items-start flex-row gap-10 mt-6 h-[600px]'>
         <div
-          className={`relative flex flex-col justify-start items-start gap-2 h-full overflow-y-auto ${
+          className={`relative flex flex-col justify-start h-full items-start gap-2 overflow-y-auto ${
             selectedPost ? ' w-[50%]' : 'w-full'
           }`}
         >
           {loading ? (
             <>
+              <div className='animate-pulse p-4 border border-teal-inputf_bg rounded-lg bg-teal-inputf_bg w-full flex justify-between flex-col'>
+                <div className='h-6 bg-teal-inputf_border rounded w-3/4 mb-2'></div>
+                <div className='h-4 bg-teal-inputf_border rounded w-1/2 mb-4'></div>
+                {/* <div className='h-8 bg-gray-600 rounded w-full'></div> */}
+              </div>
               <div className='animate-pulse p-4 border border-teal-inputf_bg rounded-lg bg-teal-inputf_bg w-full flex justify-between flex-col'>
                 <div className='h-6 bg-teal-inputf_border rounded w-3/4 mb-2'></div>
                 <div className='h-4 bg-teal-inputf_border rounded w-1/2 mb-4'></div>
@@ -372,6 +377,6 @@ export default function Announcements() {
           </div>
         )}
       </div>
-    </section>
+    </div>
   );
 }
