@@ -13,11 +13,13 @@ const FeedbackList: React.FC = () => {
   const [filterType, setFilterType] = useState('');
   const [yearFilter, setYearFilter] = useState('');
   const [monthFilter, setMonthFilter] = useState('');
+  const [loading, setLoading] = useState<boolean>(true);
   // const [isDialogOpen, setIsDialogOpen] = useState(false);
   // const [deleteId, setDeleteId] = useState<string | null>(null);
   const pathname = usePathname();
 
   const fetchFeedbacks = async () => {
+    setLoading(true); // Set loading to true before fetching
     try {
       const response = await fetch('/api/submit');
       if (!response.ok) {
@@ -27,6 +29,8 @@ const FeedbackList: React.FC = () => {
       setFeedbacks(data);
     } catch (error) {
       console.error('Error fetching feedbacks:', error);
+    } finally {
+      setLoading(false); // Set loading to false after fetching is complete
     }
   };
 
@@ -109,28 +113,28 @@ const FeedbackList: React.FC = () => {
         {/* Filters and Sort container */}
         <div className='w-full sm:w-auto flex flex-col sm:flex-row gap-2'>
           {/* Sort by Newest/Oldest */}
-          <div className='relative flex items-center cursor-pointer'>
-            <BiSortAlt2 className='absolute left-2 text-white-subheading_details' />
+          <div className='relative flex items-center '>
+            <BiSortAlt2 className='absolute left-2 text-white-subheading_details cursor-pointer' />
             <select
               value={sortOption}
               onChange={(e) => setSortOption(e.target.value)}
-              className='w-full sm:w-auto h-[40px] border border-teal-inputf_border text-white bg-teal-inputf_bg rounded-md p-2 pl-9 text-[16px] text-white-subheading_details'
+              className='cursor-pointer w-full sm:w-auto h-[40px] border border-teal-inputf_border text-white bg-teal-inputf_bg rounded-md p-2 pl-9 text-[16px] text-white-subheading_details'
             >
               <option
                 value=''
-                className='text-[16px] text-white-subheading_details'
+                className='text-[16px] text-white-subheading_details cursor-pointer'
               >
                 Sort
               </option>
               <option
                 value='newest'
-                className='text-[16px] text-white-subheading_details'
+                className='text-[16px] text-white-subheading_details cursor-pointer'
               >
                 Newest
               </option>
               <option
                 value='oldest'
-                className='text-[16px] text-white-subheading_details'
+                className='text-[16px] text-white-subheading_details cursor-pointer'
               >
                 Oldest
               </option>
@@ -139,7 +143,7 @@ const FeedbackList: React.FC = () => {
 
           {/* Filter type (Year or Month) */}
           <div className='relative flex items-center'>
-            <FiFilter className='absolute left-2 text-white-subheading_details' />
+            <FiFilter className='absolute left-2 text-white-subheading_details cursor-pointer' />
             <select
               value={filterType}
               onChange={(e) => {
@@ -147,23 +151,23 @@ const FeedbackList: React.FC = () => {
                 setYearFilter('');
                 setMonthFilter('');
               }}
-              className='w-full sm:w-auto h-[40px] border border-teal-inputf_border text-white bg-teal-inputf_bg rounded-md p-2 pl-9 text-[16px] text-white-subheading_details'
+              className='cursor-pointer w-full sm:w-auto h-[40px] border border-teal-inputf_border text-white bg-teal-inputf_bg rounded-md p-2 pl-9 text-[16px] text-white-subheading_details'
             >
               <option
                 value=''
-                className='text-[16px] text-white-subheading_details'
+                className='text-[16px] text-white-subheading_details cursor-pointer'
               >
                 Filter by date
               </option>
               <option
                 value='year'
-                className='text-[16px] text-white-subheading_details'
+                className='text-[16px] text-white-subheading_details cursor-pointer'
               >
                 Filter by Year
               </option>
               <option
                 value='month'
-                className='text-[16px] text-white-subheading_details'
+                className='text-[16px] text-white-subheading_details cursor-pointer'
               >
                 Filter by Month
               </option>
@@ -176,11 +180,11 @@ const FeedbackList: React.FC = () => {
               <select
                 value={yearFilter}
                 onChange={(e) => setYearFilter(e.target.value)}
-                className='w-full sm:w-auto h-[40px] border border-teal-inputf_border text-white bg-teal-inputf_bg rounded-md p-2 text-[16px] text-white-subheading_details'
+                className='cursor-pointer w-full sm:w-auto h-[40px] border border-teal-inputf_border text-white bg-teal-inputf_bg rounded-md p-2 text-[16px] text-white-subheading_details'
               >
                 <option
                   value=''
-                  className='text-[16px] text-white-subheading_details'
+                  className='text-[16px] text-white-subheading_details cursor-pointer'
                 >
                   All Years
                 </option>
@@ -190,7 +194,7 @@ const FeedbackList: React.FC = () => {
                     <option
                       key={year}
                       value={year}
-                      className='text-[16px] text-white-subheading_details'
+                      className='text-[16px] text-white-subheading_details cursor-pointer'
                     >
                       {year}
                     </option>
@@ -206,11 +210,11 @@ const FeedbackList: React.FC = () => {
               <select
                 value={monthFilter}
                 onChange={(e) => setMonthFilter(e.target.value)}
-                className='w-full sm:w-auto h-[40px] border border-teal-inputf_border text-white bg-teal-inputf_bg rounded-md p-2 text-[16px] text-white-subheading_details'
+                className='cursor-pointer w-full sm:w-auto h-[40px] border border-teal-inputf_border text-white bg-teal-inputf_bg rounded-md p-2 text-[16px] text-white-subheading_details'
               >
                 <option
                   value=''
-                  className='text-[16px] text-white-subheading_details'
+                  className='text-[16px] text-white-subheading_details cursor-pointer'
                 >
                   All Months
                 </option>
@@ -218,7 +222,7 @@ const FeedbackList: React.FC = () => {
                   <option
                     key={index + 1}
                     value={index + 1}
-                    className='text-[16px] text-white-subheading_details'
+                    className='text-[16px] text-white-subheading_details cursor-pointer'
                   >
                     {new Date(0, index).toLocaleString('default', {
                       month: 'long',
@@ -233,30 +237,70 @@ const FeedbackList: React.FC = () => {
 
       {/* Feedbacks section */}
       <div className='w-full space-y-2 h-full flex items-center justify-center flex-col'>
-        {sortedFeedbacks.length === 0 ? (
-          <p className='text-white-lightgray_desc'>No feedback available</p>
-        ) : (
-          sortedFeedbacks.map((feedback) => (
-            <FeedbackCard
-              key={feedback.id}
-              id={feedback.id}
-              name={feedback.name}
-              email={feedback.email}
-              feedback={feedback.feedback}
-              createdat={
-                feedback.createdat
-                  ? new Date(feedback.createdat).toLocaleDateString('en-PH', {
-                      timeZone: 'Asia/Manila',
-                    })
-                  : 'Date not available'
-              }
-              // onDelete={(id) => {
-              //   setDeleteId(id);
-              //   setIsDialogOpen(true);
-              // }}
-            />
-          ))
-        )}
+        <>
+          {loading ? (
+            <>
+              <div className='animate-pulse p-4 border border-teal-inputf_bg rounded-lg bg-teal-inputf_bg w-full flex justify-between flex-col'>
+                <div className='h-6 bg-teal-inputf_border rounded w-[300px] mb-2'></div>
+                <div className='h-4 bg-teal-inputf_border rounded w-[330px] mb-6'></div>
+                <div className='h-4 bg-teal-inputf_border rounded w-[360px] mb-2'></div>
+                <div className='h-4 bg-teal-inputf_border rounded w-[500px] mb-2'></div>
+                {/* <div className='h-8 bg-gray-600 rounded w-full'></div> */}
+              </div>
+              <div className='animate-pulse p-4 border border-teal-inputf_bg rounded-lg bg-teal-inputf_bg w-full flex justify-between flex-col'>
+                <div className='h-6 bg-teal-inputf_border rounded w-[300px] mb-2'></div>
+                <div className='h-4 bg-teal-inputf_border rounded w-[330px] mb-6'></div>
+                <div className='h-4 bg-teal-inputf_border rounded w-[360px] mb-2'></div>
+                <div className='h-4 bg-teal-inputf_border rounded w-[500px] mb-2'></div>
+                {/* <div className='h-8 bg-gray-600 rounded w-full'></div> */}
+              </div>
+              <div className='animate-pulse p-4 border border-teal-inputf_bg rounded-lg bg-teal-inputf_bg w-full flex justify-between flex-col'>
+                <div className='h-6 bg-teal-inputf_border rounded w-[300px] mb-2'></div>
+                <div className='h-4 bg-teal-inputf_border rounded w-[330px] mb-6'></div>
+                <div className='h-4 bg-teal-inputf_border rounded w-[360px] mb-2'></div>
+                <div className='h-4 bg-teal-inputf_border rounded w-[500px] mb-2'></div>
+                {/* <div className='h-8 bg-gray-600 rounded w-full'></div> */}
+              </div>
+              <div className='animate-pulse p-4 border border-teal-inputf_bg rounded-lg bg-teal-inputf_bg w-full flex justify-between flex-col'>
+                <div className='h-6 bg-teal-inputf_border rounded w-[300px] mb-2'></div>
+                <div className='h-4 bg-teal-inputf_border rounded w-[330px] mb-6'></div>
+                <div className='h-4 bg-teal-inputf_border rounded w-[360px] mb-2'></div>
+                <div className='h-4 bg-teal-inputf_border rounded w-[500px] mb-2'></div>
+                {/* <div className='h-8 bg-gray-600 rounded w-full'></div> */}
+              </div>
+              <div className='animate-pulse p-4 border border-teal-inputf_bg rounded-lg bg-teal-inputf_bg w-full flex justify-between flex-col'>
+                <div className='h-6 bg-teal-inputf_border rounded w-[300px] mb-2'></div>
+                <div className='h-4 bg-teal-inputf_border rounded w-[330px] mb-6'></div>
+                <div className='h-4 bg-teal-inputf_border rounded w-[360px] mb-2'></div>
+                <div className='h-4 bg-teal-inputf_border rounded w-[500px] mb-2'></div>
+                {/* <div className='h-8 bg-gray-600 rounded w-full'></div> */}
+              </div>
+            </>
+          ) : sortedFeedbacks.length === 0 ? (
+            <p className='text-white-lightgray_desc'>No feedback available</p>
+          ) : (
+            sortedFeedbacks.map((feedback) => (
+              <FeedbackCard
+                key={feedback.id}
+                id={feedback.id}
+                name={feedback.name}
+                email={feedback.email}
+                feedback={feedback.feedback}
+                createdat={
+                  feedback.createdat
+                    ? new Date(feedback.createdat).toLocaleDateString('en-PH', {
+                        timeZone: 'Asia/Manila',
+                      })
+                    : 'Date not available'
+                }
+                // onDelete={(id) => {
+                //   setDeleteId(id);
+                //   setIsDialogOpen(true);
+                // }}
+              />
+            ))
+          )}
+        </>
 
         {/* {isDialogOpen && (
           <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-30'>

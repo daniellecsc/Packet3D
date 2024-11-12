@@ -22,9 +22,7 @@ CardProps) {
             <p className='text-white-headline_titles_description text-xl font-bold'>
               {title}
             </p>
-            <p className='text-white-inactive_titles_desc font-normal text-sm'>
-              {date}
-            </p>
+            <p className='text-xs text-gray-500 font-normal'>{date}</p>
           </div>
         </div>
       </div>
@@ -33,7 +31,7 @@ CardProps) {
       <div className='flex justify-end p-3 px-5 mt-auto'>
         <Link href={`/announcements/${id}`}>
           <p className='text-teal-navbar_active text-sm font-normal hover:text-white-headline_titles_description'>
-            Click here to learn more{' >'}
+            Click here to learn more{' →'}
           </p>
         </Link>
       </div>
@@ -61,7 +59,7 @@ export function AdminAnnouncementCard({
       }`}
     >
       <p className='text-teal-navbar_active text-xl font-bold'>{title}</p>
-      <p className='text-white-inactive_titles_desc font-normal text-sm'>
+      <p className='text-xs text-gray-500 font-normal'>
         Posted at: {createdAt}
       </p>
       <div className='flex justify-end'>
