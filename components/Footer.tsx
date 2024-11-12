@@ -10,7 +10,7 @@ export default function Footer() {
       <div className='relative w-full flex justify-center items-center flex-col'>
         <Link href='/'>
           <Image
-            src='/Logo2.webp'
+            src='/Logo2.png'
             alt='logo2'
             width={40}
             height={40}

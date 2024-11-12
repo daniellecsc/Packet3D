@@ -35,7 +35,7 @@ export default function RootLayout({
         <div className='fixed top-0 left-0 right-0 z-40 py-4 shadow-md bg-darkTeal-bgColor'>
           <div className='flex justify-between w-full px-10'>
             <Link href='/'>
-              <Image src='/Logo.webp' alt='logo' width={110} height={50} />
+              <Image src='/Logo.png' alt='logo' width={110} height={50} />
             </Link>
             <ButtonSignOut className='hover:text-white-headline_titles_description' />
           </div>
