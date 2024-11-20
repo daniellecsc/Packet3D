@@ -28,6 +28,14 @@ export default function Team() {
               Packet3D Game
             </p>
           </div>
+          <iframe
+            src='https://www.youtube.com/embed/OfScGu1IZ-A'
+            title='YouTube video player'
+            frameBorder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            className='w-full h-full'
+            allowFullScreen
+          ></iframe>
         </div>
       </div>
     </section>
