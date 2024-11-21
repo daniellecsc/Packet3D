@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { BsHeadsetVr } from 'react-icons/bs';
-import { FaApple, FaWindows } from 'react-icons/fa';
+import { FaWindows } from 'react-icons/fa';
 import { MdDownload } from 'react-icons/md';
 
 interface cardProps {
@@ -23,12 +23,14 @@ function Card({ icon, os, description, href }: cardProps) {
         <p className='font-normal text-white-panels text-xs'>{description}</p>
       </div>
       <div className='w-full flex items-end flex-grow'>
-        <Link
-          href={''}
+        <a
+          href={href}
+          target='_blank'
+          rel='noopener noreferrer'
           className='flex gap-2 hover:bg-white-inactive_titles_desc bg-white-panels px-4 py-2 rounded-3xl font-semibold text-sm shadow-md'
         >
           <MdDownload className='text-center text-lg' /> Download
-        </Link>
+        </a>
       </div>
     </div>
   );
@@ -60,7 +62,9 @@ export default function DownloadPage() {
           }
           os={'Windows'}
           description={'Download Packet3D for Windows'}
-          href={''}
+          href={
+            'https://drive.google.com/drive/folders/1_Ti0kmAjPzZ0WibFtWSmQtD4vOe6OswE?usp=sharing'
+          }
         />
         <Card
           icon={
@@ -68,7 +72,9 @@ export default function DownloadPage() {
           }
           os={'Meta Quest 2'}
           description={'Download Packet3D for Meta Quest 2'}
-          href={''}
+          href={
+            'https://drive.google.com/drive/folders/1_Ti0kmAjPzZ0WibFtWSmQtD4vOe6OswE?usp=sharing'
+          }
         />
       </div>
     </section>
