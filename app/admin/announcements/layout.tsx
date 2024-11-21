@@ -23,15 +23,17 @@ export default async function Page({
   return (
     <section
       id='feedbackPage'
-      className='min-h-screen relative bg-darkTeal-bgColor flex justify-start gap-14 items-center flex-col'
+      className='min-h-screen relative bg-darkTeal-bgColor flex flex-col items-center'
     >
       <div className='relative flex font-bold text-white-headline_titles_description text-[30px] md:text-[40px] lg:text-[60px] justify-center items-center mt-14 xl:mt-10 drop-shadow-md'>
         Announcements
       </div>
-      <div className='w-full flex flex-row justify-between items-start h-[800px] gap-2'>
-        <Tabs orientation={'vertical'} tabs={tabs} />
-        <div className='relative overflow-hidden p-2 h-full w-full flex items-start justify-start'>
-          {children}
+      <div className='w-full overflow-x-auto'>
+        <div className='min-w-[1000px] w-full flex flex-row justify-between items-start h-[800px] gap-2'>
+          <Tabs orientation={'vertical'} tabs={tabs} />
+          <div className='relative overflow-hidden p-2 h-full w-full flex items-start justify-start'>
+            {children}
+          </div>
         </div>
       </div>
     </section>
